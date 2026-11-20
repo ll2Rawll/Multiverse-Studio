@@ -4,7 +4,7 @@ Edit **video, code, and websites** in one local-first desktop studio. Cut a laun
 
 <a href="https://cdn.jsdelivr.net/gh/ll2Rawll/Multiverse-Studio@studio-showcase/docs/media/multiverse-studio.mp4"><picture><source media="(prefers-reduced-motion: reduce)" srcset="docs/media/trailer-poster.webp"><img src="docs/media/studio-preview.webp" alt="Play the 30-second Multiverse Studio trailer. A silver and lilac sculpture rotates beside the title." width="100%"></picture></a>
 
-**[Watch the 30-second trailer](https://cdn.jsdelivr.net/gh/ll2Rawll/Multiverse-Studio@studio-showcase/docs/media/multiverse-studio.mp4)** · [Download the MP4](https://github.com/ll2Rawll/Multiverse-Studio/releases/download/studio-showcase/multiverse-studio.mp4) · [Get the source ZIP](https://github.com/ll2Rawll/Multiverse-Studio/archive/refs/tags/studio-showcase.zip)
+**[Watch the 30-second trailer](https://cdn.jsdelivr.net/gh/ll2Rawll/Multiverse-Studio@studio-showcase/docs/media/multiverse-studio.mp4)** · [Download the MP4](https://raw.githubusercontent.com/ll2Rawll/Multiverse-Studio/studio-showcase/docs/media/multiverse-studio.mp4) · [Get the source ZIP](https://github.com/ll2Rawll/Multiverse-Studio/archive/refs/tags/studio-showcase.zip)
 
 ## Inside the studio
 
