@@ -1,0 +1,28 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM"],
+    "types": ["node"],
+    "noEmit": true
+  },
+  "include": [
+    "src/shared/**/*.ts",
+    "src/engine/**/*.ts",
+    "src/adapters/**/*.ts",
+    "src/preview/**/*.ts",
+    "src/services/**/*.ts",
+    "src/ai/**/*.ts",
+    "src/agent/**/*.ts",
+    "src/media/**/*.ts",
+    "src/commands/**/*.ts",
+    "src/design/**/*.ts",
+    "src/video/**/*.ts",
+    "src/build/**/*.ts",
+    "src/main/**/*.ts",
+    "src/preload/**/*.ts",
+    "tests/**/*.ts",
+    "e2e/**/*.ts",
+    "scripts/**/*.ts"
+  ],
+  "exclude": ["e2e/harness/client/**"]
+}

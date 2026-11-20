@@ -1,0 +1,13 @@
+{
+  // Editor-wide configuration. CI-style checks use tsconfig.node.json and tsconfig.web.json
+  // (see `npm run typecheck`), which separate Node-side and browser-side code strictly.
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "jsx": "react-jsx",
+    "types": ["node"],
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.ts", "e2e/**/*.ts", "scripts/**/*.ts"],
+  "exclude": ["e2e/harness/client/**"]
+}

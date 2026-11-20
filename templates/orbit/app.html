@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Orbit: your tasks</title>
+  <link rel="stylesheet" href="theme.css">
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <main class="orbit-app">
+    <div class="app-head">
+      <a class="brand" href="index.html">Orbit</a>
+      <p class="app-note">A demonstration app: tasks are kept in this browser only. There is no account or server.</p>
+    </div>
+    <h1>Tasks</h1>
+    <form id="new-task" class="new-task" novalidate>
+      <label for="task-title">Task title</label>
+      <input id="task-title" name="title" autocomplete="off" placeholder="What needs doing?" maxlength="120">
+      <button type="submit">Add task</button>
+      <p id="task-error" class="task-error" role="alert"></p>
+    </form>
+    <div class="task-bar">
+      <p class="task-count" data-testid="count" aria-live="polite">0 open</p>
+      <div class="filters" role="group" aria-label="Show tasks">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="open" aria-pressed="false">Open</button>
+        <button type="button" data-filter="done" aria-pressed="false">Done</button>
+      </div>
+    </div>
+    <ul id="task-list" class="task-list" aria-label="Tasks"></ul>
+    <p id="empty" class="empty">No tasks yet. Add your first one above.</p>
+    <p id="saved-note" class="saved-note" aria-live="polite"></p>
+  </main>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

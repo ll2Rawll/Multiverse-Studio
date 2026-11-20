@@ -1,0 +1,9 @@
+{
+  "name": "Kiln landing page",
+  "checkpoint": "Sample created",
+  "alternatives": [
+    { "dir": "minimal", "name": "Minimal", "color": "sky", "description": "One quiet column with generous space and a single accent." },
+    { "dir": "editorial", "name": "Editorial", "color": "amber", "description": "A printed-journal feel: serif type, rules, captions and columns." },
+    { "dir": "bold", "name": "Bold", "color": "rose", "description": "A dark canvas with oversized display type and bright accents." }
+  ]
+}

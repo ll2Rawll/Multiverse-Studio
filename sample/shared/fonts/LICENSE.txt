@@ -1,0 +1,32 @@
+Fonts in this folder are subsets of fonts licensed under the SIL Open Font License, Version 1.1.
+Full license text: https://openfontlicense.org
+
+inter-regular.woff
+  Family: Inter Regular
+  Copyright 2016 The Inter Project Authors
+  License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL
+  License URL: http://scripts.sil.org/OFL
+
+inter-semibold.woff
+  Family: Inter SemiBold Regular
+  Copyright 2016 The Inter Project Authors
+  License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: http://scripts.sil.org/OFL
+  License URL: http://scripts.sil.org/OFL
+
+poppins-bold.woff
+  Family: Poppins Bold
+  Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
+  License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL
+  License URL: https://scripts.sil.org/OFL
+
+Lora-Variable.ttf (unmodified)
+  Family: Lora Regular
+  Copyright 2011 The Lora Project Authors (https://github.com/cyrealtype/Lora-Cyrillic), with Reserved Font Name "Lora".
+  License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL
+  License URL: https://scripts.sil.org/OFL
+
+Lora-Italic-Variable.ttf (unmodified)
+  Family: Lora Italic
+  Copyright 2011 The Lora Project Authors (https://github.com/cyrealtype/Lora-Cyrillic), with Reserved Font Name "Lora".
+  License: This Font Software is licensed under the SIL Open Font License, Version 1.1. This license is available with a FAQ at: https://scripts.sil.org/OFL
+  License URL: https://scripts.sil.org/OFL

@@ -1,0 +1,9 @@
+{
+  "name": "orbit",
+  "private": true,
+  "type": "module",
+  "description": "Orbit, a fictional task app used to demonstrate Multiverse Studio. No dependencies.",
+  "scripts": {
+    "test": "node --test"
+  }
+}

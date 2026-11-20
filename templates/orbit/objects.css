@@ -1,0 +1,16 @@
+/* Living objects (Multiverse Studio). Themed by the --mv-* tokens, like the section library. */
+.mv-object { padding-block: var(--mv-section-space, 72px); }
+.mv-object .mv-container { width: min(1120px, 100% - 2 * var(--mv-gutter, 24px)); margin-inline: auto; }
+.mv-obj-card { max-width: 380px; margin-inline: auto; padding: 28px; border: 1px solid var(--mv-color-line, #e3e1ec); border-radius: var(--mv-radius, 12px); background: var(--mv-color-card, #fff); display: grid; gap: 14px; }
+.mv-obj-plan { margin: 0; font-family: var(--mv-font-heading, inherit); font-size: 1.25rem; }
+.mv-obj-price { margin: 0; color: var(--mv-color-muted, #5b5870); }
+.mv-obj-amount { font-family: var(--mv-font-heading, inherit); font-size: 2.6rem; font-weight: 700; color: var(--mv-color-text, #111); }
+.mv-obj-list { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.mv-obj-features { max-width: 60ch; }
+.mv-obj-heading, .mv-obj-title { margin: 0 0 12px; font-family: var(--mv-font-heading, inherit); font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.1; }
+.mv-obj-title { font-size: clamp(2.4rem, 5vw, 4rem); }
+.mv-obj-subtitle, .mv-obj-body { margin: 0 0 20px; color: var(--mv-color-muted, #5b5870); font-size: 1.15rem; max-width: 60ch; }
+.mv-obj-stat { margin: 0; display: grid; gap: 6px; }
+.mv-obj-value { font-family: var(--mv-font-heading, inherit); font-size: clamp(3rem, 7vw, 5rem); font-weight: 700; line-height: 1; color: var(--mv-color-primary, #3b3bd6); }
+.mv-obj-label { font-size: 1.15rem; }
+.mv-obj-source { margin: 8px 0 0; font-size: 0.9rem; color: var(--mv-color-muted, #5b5870); }

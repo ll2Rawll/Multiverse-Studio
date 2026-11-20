@@ -1,0 +1,246 @@
+/*
+ * Design tokens: spacing, radii, type, motion, colour and the glass material system.
+ * Materials (from back to front): canvas → navigation → toolbar → inspector → modal,
+ * plus an opaque "solid" surface for editors and dense reading.
+ */
+:root {
+  /* Spacing — 4px scale */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+  --s-12: 48px;
+
+  /* Corner radii */
+  --r-xs: 6px;
+  --r-control: 10px;
+  --r-menu: 16px;
+  --r-card: 16px;
+  --r-panel: 22px;
+  --r-pill: 999px;
+
+  /* Typography */
+  --font-ui: 'Segoe UI Variable Text', 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Segoe UI Variable Display', 'Segoe UI Variable', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Cascadia Code', 'Cascadia Mono', Consolas, 'SF Mono', Menlo, 'DejaVu Sans Mono', monospace;
+  --font-mono-editor: 'Cascadia Code';
+  --text-xs: 11.5px;
+  --text-sm: 12.5px;
+  --text-md: 13.5px;
+  --text-lg: 15px;
+  --text-title: 19px;
+  --text-display: 30px;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  /* Motion — short, purposeful, no overshoot */
+  --ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-press: 140ms;
+  --dur-panel: 220ms;
+  --dur-graph: 300ms;
+
+  /* Alternative colours — distinct and softly saturated */
+  --alt-sky: #6cb4ff;
+  --alt-amber: #f0b45e;
+  --alt-rose: #f27fa5;
+  --alt-teal: #4ccfbf;
+  --alt-violet: #b18cff;
+  --alt-lime: #a6d65f;
+  --alt-coral: #ff9071;
+  --alt-mint: #7ddfa8;
+  --alt-shared: #9aa2ff;
+
+  --toolbar-h: 44px;
+  --rail-w: 72px;
+  --controls-reserve: max(0px, calc(100vw - env(titlebar-area-x, 0px) - env(titlebar-area-width, 100vw)));
+}
+
+/* ---------- Dark (default): deep graphite with a blue undertone ---------- */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --canvas: #0f121a;
+  --canvas-glow: rgba(120, 132, 255, 0.05);
+  --text-1: #eef0f6;
+  --text-2: #a8aec0;
+  --text-3: #8f96aa;
+  --accent: #8f97ff;
+  --accent-strong: #7b84f5;
+  --accent-soft: rgba(143, 151, 255, 0.16);
+  --accent-text: #b9beff;
+  --on-accent: #0c0f1d;
+  --line-soft: rgba(255, 255, 255, 0.06);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.18);
+  --hover: rgba(255, 255, 255, 0.06);
+  --press: rgba(255, 255, 255, 0.1);
+  --selected: rgba(143, 151, 255, 0.14);
+  --control-bg: rgba(255, 255, 255, 0.06);
+  --control-bg-hover: rgba(255, 255, 255, 0.1);
+  --input-bg: rgba(8, 10, 16, 0.45);
+  --danger: #ff7d88;
+  --danger-soft: rgba(255, 125, 136, 0.14);
+  --warning: #f2c06a;
+  --warning-soft: rgba(242, 192, 106, 0.14);
+  --success: #5dd3a0;
+  --success-soft: rgba(93, 211, 160, 0.14);
+  --card-bg: #161a25;
+  --preview-bg: #ffffff;
+  --code-bg: rgba(0, 0, 0, 0.28);
+  --grid-dot: rgba(255, 255, 255, 0.055);
+
+  --mat-nav: rgba(23, 27, 39, 0.68);
+  --mat-toolbar: rgba(27, 31, 45, 0.74);
+  --mat-inspector: rgba(22, 26, 38, 0.78);
+  --mat-modal: rgba(27, 31, 44, 0.9);
+  --mat-menu: rgba(31, 35, 50, 0.95);
+  --mat-solid: #141824;
+  --mat-border: rgba(255, 255, 255, 0.085);
+  --mat-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  --mat-blur: blur(30px) saturate(150%);
+  --shadow-panel: 0 18px 50px -22px rgba(0, 0, 0, 0.7), 0 2px 6px -2px rgba(0, 0, 0, 0.35);
+  --shadow-float: 0 26px 70px -20px rgba(0, 0, 0, 0.75), 0 4px 14px -6px rgba(0, 0, 0, 0.4);
+  --shadow-card: 0 12px 32px -16px rgba(0, 0, 0, 0.65);
+}
+
+/* ---------- Light: pearl grey with translucent white surfaces ---------- */
+[data-theme='light'] {
+  color-scheme: light;
+  --canvas: #e8eaef;
+  --canvas-glow: rgba(110, 120, 230, 0.05);
+  --text-1: #1c2030;
+  --text-2: #535a6c;
+  --text-3: #5b6172;
+  --accent: #5a62e0;
+  --accent-strong: #4a52d2;
+  --accent-soft: rgba(90, 98, 224, 0.12);
+  --accent-text: #444cc8;
+  --on-accent: #ffffff;
+  --line-soft: rgba(24, 32, 64, 0.06);
+  --line: rgba(24, 32, 64, 0.1);
+  --line-strong: rgba(24, 32, 64, 0.18);
+  --hover: rgba(24, 32, 64, 0.05);
+  --press: rgba(24, 32, 64, 0.09);
+  --selected: rgba(90, 98, 224, 0.1);
+  --control-bg: rgba(255, 255, 255, 0.7);
+  --control-bg-hover: rgba(255, 255, 255, 0.95);
+  --input-bg: rgba(255, 255, 255, 0.85);
+  --danger: #b3263a;
+  --danger-soft: rgba(212, 57, 74, 0.1);
+  --warning: #855300;
+  --warning-soft: rgba(214, 150, 30, 0.14);
+  --success: #18865a;
+  --success-soft: rgba(24, 134, 90, 0.1);
+  --card-bg: #ffffff;
+  --code-bg: rgba(24, 32, 64, 0.05);
+  --grid-dot: rgba(24, 32, 64, 0.07);
+  --alt-sky: #3d8fe6;
+  --alt-amber: #d18a1e;
+  --alt-rose: #dd4d7e;
+  --alt-teal: #1fa596;
+  --alt-violet: #8a5ae6;
+  --alt-lime: #6e9f24;
+  --alt-coral: #e5653f;
+  --alt-mint: #2fae6c;
+  --alt-shared: #5a62e0;
+
+  --mat-nav: rgba(255, 255, 255, 0.6);
+  --mat-toolbar: rgba(255, 255, 255, 0.7);
+  --mat-inspector: rgba(255, 255, 255, 0.72);
+  --mat-modal: rgba(250, 251, 253, 0.92);
+  --mat-menu: rgba(252, 252, 254, 0.96);
+  --mat-solid: #fbfbfd;
+  --mat-border: rgba(24, 32, 64, 0.08);
+  --mat-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --mat-blur: blur(30px) saturate(180%);
+  --shadow-panel: 0 18px 44px -24px rgba(40, 52, 96, 0.3), 0 2px 6px -2px rgba(40, 52, 96, 0.08);
+  --shadow-float: 0 26px 60px -22px rgba(40, 52, 96, 0.35), 0 4px 12px -6px rgba(40, 52, 96, 0.12);
+  --shadow-card: 0 12px 30px -18px rgba(40, 52, 96, 0.35);
+}
+
+/* ---------- Reduced transparency: every material becomes opaque ---------- */
+[data-transparency='reduced'] {
+  --mat-blur: none;
+  --mat-nav: #181c28;
+  --mat-toolbar: #1c202d;
+  --mat-inspector: #181c28;
+  --mat-modal: #1d2130;
+  --mat-menu: #212536;
+}
+[data-transparency='reduced'][data-theme='light'] {
+  --mat-nav: #f6f7fa;
+  --mat-toolbar: #fbfbfd;
+  --mat-inspector: #f6f7fa;
+  --mat-modal: #fdfdfe;
+  --mat-menu: #ffffff;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --mat-nav: #181c28;
+    --mat-toolbar: #1c202d;
+    --mat-inspector: #181c28;
+    --mat-modal: #1d2130;
+    --mat-menu: #212536;
+  }
+  [data-theme='light'] {
+    --mat-nav: #f6f7fa;
+    --mat-toolbar: #fbfbfd;
+    --mat-inspector: #f6f7fa;
+    --mat-modal: #fdfdfe;
+    --mat-menu: #ffffff;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+[data-motion='reduced'] {
+  --dur-press: 0ms;
+  --dur-panel: 0ms;
+  --dur-graph: 0ms;
+}
+[data-motion='reduced'] *,
+[data-motion='reduced'] *::before,
+[data-motion='reduced'] *::after {
+  animation-duration: 0ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ---------- Materials ---------- */
+.material-nav,
+.material-toolbar,
+.material-inspector,
+.material-modal,
+.material-menu {
+  border: 1px solid var(--mat-border);
+  box-shadow: var(--mat-highlight), var(--shadow-panel);
+  -webkit-backdrop-filter: var(--mat-blur);
+  backdrop-filter: var(--mat-blur);
+}
+.material-nav {
+  background: var(--mat-nav);
+}
+.material-toolbar {
+  background: var(--mat-toolbar);
+}
+.material-inspector {
+  background: var(--mat-inspector);
+}
+.material-modal {
+  background: var(--mat-modal);
+  box-shadow: var(--mat-highlight), var(--shadow-float);
+}
+.material-menu {
+  background: var(--mat-menu);
+  box-shadow: var(--mat-highlight), var(--shadow-float);
+}
+.material-solid {
+  background: var(--mat-solid);
+  border: 1px solid var(--mat-border);
+  box-shadow: var(--shadow-panel);
+}

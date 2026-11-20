@@ -1,0 +1,346 @@
+/*
+ * Dystopia appearance — "eclipse".
+ *
+ * A minimal wallpaper sits behind every glass surface: an ultraviolet sky field and a dark
+ * eclipse whose rim burns sodium orange, cut by one quiet horizontal slip. The glass is lit
+ * from below by that sodium light (warm lower rims) and from above by the ultraviolet sky
+ * (cool upper rims). Workspace titles slip along the same kind of cut. Everything else stays
+ * quiet: layout, controls and behaviour match the Graphite and Pearl appearances.
+ *
+ * Palette: night #120c1d · storm #2a1640 · sodium #ff8a3d · ultraviolet #a58bff ·
+ * carmine #ff4f6d · ash #f1eaf6.
+ */
+
+/* ---------- Tokens ---------- */
+[data-theme='dystopia'] {
+  color-scheme: dark;
+  --night: #120c1d;
+  --storm: #2a1640;
+  --sodium: #ff8a3d;
+  --sodium-light: #ffad73;
+  --ultraviolet: #a58bff;
+  --carmine: #ff4f6d;
+  --ash: #f1eaf6;
+
+  --font-condensed: Bahnschrift, 'DIN Condensed', 'Roboto Condensed', 'Arial Narrow', 'DejaVu Sans Condensed', 'DejaVu Sans', sans-serif;
+
+  --canvas: #120c1d;
+  --canvas-glow: transparent;
+  --text-1: #f1eaf6;
+  --text-2: #c9bcd9;
+  --text-3: #a897bc;
+  --accent: #ff8a3d;
+  --accent-strong: #ff7a26;
+  --accent-soft: rgba(255, 138, 61, 0.16);
+  --accent-text: #ffad73;
+  --on-accent: #1f0c00;
+  --line-soft: rgba(225, 205, 255, 0.07);
+  --line: rgba(225, 205, 255, 0.12);
+  --line-strong: rgba(225, 205, 255, 0.22);
+  --hover: rgba(225, 205, 255, 0.07);
+  --press: rgba(225, 205, 255, 0.12);
+  --selected: rgba(165, 139, 255, 0.2);
+  --control-bg: rgba(225, 205, 255, 0.07);
+  --control-bg-hover: rgba(225, 205, 255, 0.12);
+  --input-bg: rgba(10, 5, 18, 0.5);
+  --danger: #ff5f79;
+  --danger-soft: rgba(255, 79, 109, 0.16);
+  --warning: #ffc45e;
+  --warning-soft: rgba(255, 196, 94, 0.14);
+  --success: #5fe3ad;
+  --success-soft: rgba(95, 227, 173, 0.14);
+  --card-bg: rgba(22, 13, 36, 0.62);
+  --preview-bg: #ffffff;
+  --code-bg: rgba(0, 0, 0, 0.3);
+  --grid-dot: rgba(225, 205, 255, 0.075);
+
+  --alt-sky: #74bfff;
+  --alt-amber: #ffb547;
+  --alt-rose: #ff6f9c;
+  --alt-teal: #3fe0c8;
+  --alt-violet: #b49cff;
+  --alt-lime: #b9dc5a;
+  --alt-coral: #ff8466;
+  --alt-mint: #79e8b0;
+  --alt-shared: #f1eaf6;
+
+  --mat-nav: rgba(20, 12, 33, 0.58);
+  --mat-toolbar: rgba(24, 14, 38, 0.6);
+  --mat-inspector: rgba(20, 12, 33, 0.62);
+  --mat-modal: rgba(26, 16, 40, 0.86);
+  --mat-menu: rgba(30, 19, 46, 0.95);
+  --mat-solid: #150e21;
+  --mat-border: rgba(225, 205, 255, 0.1);
+  --mat-highlight: inset 0 1px 0 rgba(222, 208, 255, 0.16), inset 0 -1px 0 rgba(255, 150, 90, 0.16);
+  --mat-blur: blur(28px) saturate(170%);
+  --shadow-panel: 0 24px 60px -26px rgba(4, 0, 10, 0.85), 0 2px 8px -2px rgba(4, 0, 10, 0.45);
+  --shadow-float: 0 30px 80px -24px rgba(4, 0, 10, 0.9), 0 4px 16px -6px rgba(4, 0, 10, 0.5);
+  --shadow-card: 0 18px 44px -22px rgba(4, 0, 10, 0.85);
+}
+
+[data-transparency='reduced'][data-theme='dystopia'] {
+  --mat-blur: none;
+  --mat-nav: #1a1129;
+  --mat-toolbar: #1d132e;
+  --mat-inspector: #1a1129;
+  --mat-modal: #1f1531;
+  --mat-menu: #231837;
+  --card-bg: #1a1129;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  [data-theme='dystopia'] {
+    --mat-nav: #1a1129;
+    --mat-toolbar: #1d132e;
+    --mat-inspector: #1a1129;
+    --mat-modal: #1f1531;
+    --mat-menu: #231837;
+    --card-bg: #1a1129;
+  }
+}
+
+/* ---------- Wallpaper: soft colour fields and an eclipse, cut by one quiet slip ---------- */
+.fracture {
+  display: none;
+}
+[data-theme='dystopia'] .app-canvas {
+  background: var(--night);
+}
+[data-theme='dystopia'] .fracture {
+  display: block;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  --ex: 61vw;
+  --ey: 134%;
+  --er: 60vmax;
+  /* Soft fields stay whole: the ultraviolet sky, a carmine haze and the eclipse's sodium corona. */
+  background:
+    radial-gradient(circle calc(var(--er) * 1.32) at var(--ex) var(--ey), rgba(255, 138, 61, 0) 60%, rgba(255, 138, 61, 0.5) 75.8%, rgba(255, 79, 109, 0.16) 85%, rgba(255, 79, 109, 0) 100%),
+    radial-gradient(50% 58% at 10% 6%, rgba(165, 139, 255, 0.34), rgba(165, 139, 255, 0) 70%),
+    radial-gradient(36% 36% at 22% 80%, rgba(255, 79, 109, 0.12), rgba(255, 79, 109, 0) 70%),
+    linear-gradient(165deg, #170d28 0%, #1a0f2e 42%, #120a1e 100%);
+}
+/* Only the eclipse's dark body and its thin lit rim are cut, so the slip stays crisp and quiet. */
+[data-theme='dystopia'] .fracture > span {
+  position: absolute;
+  inset: 0 -10vw;
+  clip-path: inset(var(--t) 0 var(--b) 0);
+  transform: translateX(var(--dx));
+  background: radial-gradient(circle var(--er) at calc(var(--ex) + 10vw) var(--ey), #100919 calc(100% - 3px), rgba(255, 200, 166, 0.85) calc(100% - 1px), rgba(255, 200, 166, 0) 100%);
+}
+
+/* One orchestrated moment at launch: the bands drift in and settle into their slip. */
+[data-theme='dystopia'] .fracture.is-entering > span {
+  animation: fracture-settle 1300ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i) * 55ms);
+}
+@keyframes fracture-settle {
+  0% {
+    transform: translateX(calc(var(--dx) * 6));
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(var(--dx));
+    opacity: 1;
+  }
+}
+/* When a shared change lands in alternatives, the slip jolts once. */
+[data-theme='dystopia'] .fracture.is-pulse > span {
+  animation: fracture-jolt 640ms cubic-bezier(0.3, 0, 0.2, 1);
+}
+@keyframes fracture-jolt {
+  0% {
+    transform: translateX(var(--dx));
+  }
+  14% {
+    transform: translateX(calc(var(--dx) * -2.4));
+  }
+  34% {
+    transform: translateX(calc(var(--dx) * 1.8));
+  }
+  58% {
+    transform: translateX(calc(var(--dx) * 0.7));
+  }
+  100% {
+    transform: translateX(var(--dx));
+  }
+}
+
+/* ---------- Liquid glass: cool sky light on top edges, sodium light on bottom edges ---------- */
+[data-theme='dystopia'] :is(.material-nav, .material-toolbar, .material-inspector, .material-modal, .material-menu, .rail) {
+  background-image:
+    linear-gradient(172deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0) 24%),
+    linear-gradient(0deg, rgba(255, 138, 61, 0.09) 0%, rgba(255, 138, 61, 0) 32%);
+}
+[data-theme='dystopia'] .segmented-thumb {
+  background: rgba(236, 222, 255, 0.13);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 150, 90, 0.22),
+    0 2px 10px -2px rgba(4, 0, 10, 0.6);
+}
+
+/* ---------- Type: condensed, torn titles; sentence-case labels ---------- */
+[data-theme='dystopia'] .workspace-title[data-text],
+[data-theme='dystopia'] .welcome-hero h1[data-text] {
+  position: relative;
+  font-family: var(--font-condensed);
+  font-stretch: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: transparent;
+  padding-right: 0.14em;
+}
+[data-theme='dystopia'] .workspace-title[data-text] {
+  font-size: 34px;
+  letter-spacing: 0.01em;
+  margin: -2px 6px 0 0;
+}
+[data-theme='dystopia'] .workspace-title[data-text]::before,
+[data-theme='dystopia'] .workspace-title[data-text]::after,
+[data-theme='dystopia'] .welcome-hero h1[data-text]::before,
+[data-theme='dystopia'] .welcome-hero h1[data-text]::after {
+  content: attr(data-text);
+  content: attr(data-text) / '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+/* Upper part: ash. Lower part: faintly warmed by the eclipse and slipped sideways along the cut. */
+[data-theme='dystopia'] .workspace-title[data-text]::before,
+[data-theme='dystopia'] .welcome-hero h1[data-text]::before {
+  color: var(--ash);
+  clip-path: inset(0 0 calc(44% + 0.5px) 0);
+}
+[data-theme='dystopia'] .workspace-title[data-text]::after,
+[data-theme='dystopia'] .welcome-hero h1[data-text]::after {
+  color: #ffdcc4;
+  clip-path: inset(calc(56% + 0.5px) 0 0 0);
+  transform: translateX(0.06em);
+}
+@media (forced-colors: active) {
+  [data-theme='dystopia'] .workspace-title[data-text],
+  [data-theme='dystopia'] .welcome-hero h1[data-text] {
+    color: CanvasText;
+  }
+  [data-theme='dystopia'] .workspace-title[data-text]::before,
+  [data-theme='dystopia'] .workspace-title[data-text]::after,
+  [data-theme='dystopia'] .welcome-hero h1[data-text]::before,
+  [data-theme='dystopia'] .welcome-hero h1[data-text]::after {
+    display: none;
+  }
+}
+
+[data-theme='dystopia'] :is(.sidebar-subhead h2, .inspector-section-head h3, .menu-heading, .welcome-recent h2, .tour-kicker, .timeline-day-title) {
+  font-family: var(--font-condensed);
+  font-stretch: 75%;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+  text-transform: none;
+  color: var(--text-3);
+}
+[data-theme='dystopia'] :is(.card-name, .inspector-title h2, .title-input, .project-name, .dialog-head h2) {
+  font-family: var(--font-condensed);
+  font-stretch: 75%;
+  letter-spacing: 0.01em;
+}
+[data-theme='dystopia'] .card-name {
+  font-size: 16px;
+}
+[data-theme='dystopia'] :is(.inspector-title h2, .title-input) {
+  font-size: 21px;
+  font-weight: 700;
+}
+
+/* ---------- Buttons ---------- */
+[data-theme='dystopia'] .btn-primary {
+  background: linear-gradient(180deg, #ffa262, #ff8a3d);
+  color: var(--on-accent);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 10px 26px -12px rgba(255, 138, 61, 0.9);
+}
+[data-theme='dystopia'] .btn-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, #ffb07a, #ff9550);
+}
+/* Saving to the Shared version uses the origin colour, ash. */
+[data-theme='dystopia'] .btn-shared {
+  background: var(--ash);
+  color: #1b1027;
+  box-shadow: inset 0 -1px 0 rgba(255, 138, 61, 0.35), 0 10px 26px -14px rgba(241, 234, 246, 0.7);
+}
+[data-theme='dystopia'] .btn-shared:hover:not(:disabled) {
+  background: #ffffff;
+}
+
+/* ---------- Explore: the Shared version is the origin band; alternatives sit below it ---------- */
+[data-theme='dystopia'] .preview-grid {
+  gap: var(--s-5) var(--s-4);
+}
+[data-theme='dystopia'] .preview-card {
+  background: var(--card-bg);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  backdrop-filter: blur(24px) saturate(160%);
+  border-color: rgba(225, 205, 255, 0.13);
+  box-shadow: inset 0 1px 0 rgba(222, 208, 255, 0.12), var(--shadow-card);
+}
+[data-theme='dystopia'] .preview-card:hover {
+  border-color: rgba(225, 205, 255, 0.24);
+}
+[data-theme='dystopia'] .preview-card.is-selected {
+  border-color: var(--line-color);
+  box-shadow:
+    0 0 0 1px var(--line-color),
+    0 0 0 5px color-mix(in srgb, var(--line-color) 16%, transparent),
+    0 22px 70px -22px color-mix(in srgb, var(--line-color) 60%, transparent);
+}
+[data-theme='dystopia'] .preview-card.is-shared:has(.card-preview.vp-desktop) {
+  grid-column: 1 / -1;
+}
+[data-theme='dystopia'] .preview-card.is-shared .card-preview.vp-desktop {
+  aspect-ratio: 3 / 1;
+}
+[data-theme='dystopia'] .preview-card.is-shared .card-name {
+  font-size: 19px;
+  font-weight: 700;
+}
+.card-reach {
+  display: none;
+}
+[data-theme='dystopia'] .preview-card.is-shared:has(.card-preview.vp-desktop) .card-reach {
+  display: inline;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding-left: 12px;
+  border-left: 1px solid var(--line);
+  font-size: var(--text-sm);
+  color: var(--text-3);
+}
+[data-theme='dystopia'] .preview-loading {
+  background: linear-gradient(180deg, #21152f, #180f25);
+}
+[data-theme='dystopia'] .card-preview.vp-mobile,
+[data-theme='dystopia'] .card-preview.vp-mobile .preview-viewport {
+  background: transparent;
+}
+
+/* ---------- Sidebar: the selected line carries its colour like a lit window ---------- */
+[data-theme='dystopia'] .line-item.is-selected {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--line-color) 22%, transparent), color-mix(in srgb, var(--line-color) 6%, transparent));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- Welcome: the city is the first thing you see ---------- */
+[data-theme='dystopia'] .welcome-hero h1[data-text] {
+  font-size: 54px;
+  white-space: nowrap;
+  letter-spacing: 0.005em;
+  margin-top: var(--s-4);
+}
+[data-theme='dystopia'] .welcome-card {
+  width: min(600px, 100%);
+}

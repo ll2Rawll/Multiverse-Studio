@@ -1,0 +1,54 @@
+appId: studio.multiverse.app
+productName: Multiverse Studio
+copyright: Copyright © 2026 Multiverse Studio
+directories:
+  output: release
+  buildResources: resources
+files:
+  - dist/**
+  - dist-electron/**
+  - resources/icons/**
+  - package.json
+  - "!**/*.map"
+# The sample project ships as plain files next to the app so the engine worker can read it.
+extraResources:
+  - from: sample
+    to: sample
+  - from: templates
+    to: templates
+  # Fonts for text drawn into exported videos (OFL).
+  - from: resources/fonts
+    to: resources/fonts
+  # Optional bundled FFmpeg (see resources/bin/README.md and `npm run bundle:ffmpeg`). Without it the
+  # app uses MV_FFMPEG/MV_FFPROBE or the system PATH.
+  - from: resources/bin
+    to: resources/bin
+    filter:
+      - "ffmpeg*"
+      - "ffprobe*"
+      - "FFMPEG-LICENSE.txt"
+asar: true
+# Worker threads load their script from disk; keep it outside the archive.
+asarUnpack:
+  - dist-electron/engineWorker.cjs
+win:
+  target:
+    - target: nsis
+      arch: [x64, arm64]
+    - target: portable
+      arch: [x64]
+  icon: resources/icons/icon.png
+  artifactName: ${productName}-${version}-${arch}.${ext}
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  shortcutName: Multiverse Studio
+linux:
+  target: [AppImage]
+  icon: resources/icons/icon.png
+  category: Development
+mac:
+  target: [dmg]
+  icon: resources/icons/icon.png

@@ -1,0 +1,5 @@
+Inter (Inter-Regular.otf, Inter-SemiBold.otf)
+Copyright 2016-2023 The Inter Project Authors (https://github.com/rsms/inter)
+Licensed under the SIL Open Font License, Version 1.1. Full text: https://openfontlicense.org
+
+Used by Multiverse Studio to draw text overlays into exported videos.

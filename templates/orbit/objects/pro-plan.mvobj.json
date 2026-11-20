@@ -1,0 +1,27 @@
+{
+  "format": "multiverse-object",
+  "version": 1,
+  "id": "pro-plan",
+  "type": "pricing-card",
+  "name": "Pro plan",
+  "revision": 1,
+  "properties": {
+    "plan": "Orbit Pro",
+    "price": "$8",
+    "period": "per month",
+    "features": [
+      "Unlimited tasks",
+      "Open and done filters",
+      "Works in any modern browser"
+    ],
+    "cta": "Try the demo app",
+    "href": "app.html"
+  },
+  "assets": [],
+  "targets": [
+    "web",
+    "video"
+  ],
+  "dependencies": [],
+  "overrides": {}
+}

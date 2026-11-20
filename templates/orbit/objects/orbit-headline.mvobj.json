@@ -1,0 +1,19 @@
+{
+  "format": "multiverse-object",
+  "version": 1,
+  "id": "orbit-headline",
+  "type": "title-card",
+  "name": "Orbit headline",
+  "revision": 1,
+  "properties": {
+    "title": "Orbit",
+    "subtitle": "Plan the week. Ship the work."
+  },
+  "assets": [],
+  "targets": [
+    "web",
+    "video"
+  ],
+  "dependencies": [],
+  "overrides": {}
+}

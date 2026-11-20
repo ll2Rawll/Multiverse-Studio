@@ -1,0 +1,477 @@
+/* ---------- Live AI activity: reserved slot, glass pill, highlight, pointer ---------- */
+:root {
+  --activity-h: 0px;
+  /* The AI's colour: soft periwinkle in every theme, so AI activity never looks like your own selection. */
+  --ai-color: #9aa1ff;
+  --ai-pointer: #9aa1ff;
+  --ai-edge: #ffffff;
+  --ai-line: color-mix(in srgb, var(--ai-color) 90%, transparent);
+  --ai-fill: color-mix(in srgb, var(--ai-color) 8%, transparent);
+}
+[data-theme='light'] {
+  --ai-color: #6670e4;
+}
+:root.has-activity {
+  --activity-h: 48px;
+}
+.workspace {
+  margin-top: var(--activity-h);
+  transition: margin-top var(--dur-panel) var(--ease);
+}
+
+/* The slot sits in the workspace column under the toolbar; the workspace moves once when it opens. */
+.activity-slot {
+  grid-column: 3;
+  grid-row: 2;
+  align-self: start;
+  z-index: 7;
+  height: var(--activity-h);
+  min-width: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.activity-slot > * {
+  pointer-events: auto;
+}
+.activity-anchor {
+  position: relative;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.activity-pill {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 40px;
+  min-width: 220px;
+  max-width: min(480px, 100%);
+  padding: 0 5px 0 12px;
+  border-radius: var(--r-pill);
+  background: var(--mat-menu);
+  border: 1px solid var(--mat-border);
+  box-shadow: var(--mat-highlight), var(--shadow-card);
+  -webkit-backdrop-filter: var(--mat-blur);
+  backdrop-filter: var(--mat-blur);
+  overflow: hidden;
+  animation: activity-in var(--dur-panel) var(--ease-out);
+}
+@keyframes activity-in {
+  from {
+    opacity: 0;
+  }
+}
+.activity-icon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-right: 4px;
+  border-radius: 50%;
+  color: var(--ai-color);
+  background: color-mix(in srgb, var(--ai-color) 16%, transparent);
+}
+.activity-pill.is-failed .activity-icon {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+.activity-pill.is-completed .activity-icon {
+  color: var(--success);
+  background: var(--success-soft);
+}
+.activity-pill.is-paused .activity-icon {
+  color: var(--warning);
+  background: var(--warning-soft);
+}
+.activity-label {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  height: 100%;
+  padding: 0 6px 0 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.activity-label:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -4px;
+  border-radius: var(--r-pill);
+}
+.activity-label > span {
+  align-self: center;
+}
+.activity-who {
+  flex: none;
+  max-width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--text-2);
+}
+.activity-what {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--text-sm);
+  color: var(--text-1);
+}
+.activity-btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+  transition: background var(--dur-press) var(--ease), color var(--dur-press) var(--ease);
+}
+.activity-btn:hover {
+  background: var(--hover);
+  color: var(--text-1);
+}
+.activity-btn:focus-visible,
+.activity-count:focus-visible,
+.activity-aside:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+.activity-stop:hover {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+.activity-text-btn {
+  padding: 0 10px;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--accent-text);
+  white-space: nowrap;
+}
+.activity-done {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.activity-count {
+  flex: none;
+  display: grid;
+  place-items: center;
+  min-width: 20px;
+  height: 20px;
+  margin: 0 3px;
+  padding: 0 6px;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+}
+.activity-chevron {
+  transition: transform var(--dur-press) var(--ease);
+}
+.activity-chevron.is-open {
+  transform: rotate(180deg);
+}
+.activity-progress {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: var(--line-soft);
+}
+.activity-progress > span {
+  display: block;
+  height: 100%;
+  background: var(--ai-color);
+  transform-origin: left center;
+  transition: transform 220ms var(--ease);
+}
+.activity-aside {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  margin-top: 4px;
+  padding: 0 6px 0 12px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--mat-border);
+  background: var(--mat-menu);
+  -webkit-backdrop-filter: var(--mat-blur);
+  backdrop-filter: var(--mat-blur);
+  box-shadow: var(--mat-highlight), var(--shadow-card);
+  color: var(--text-2);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.activity-aside:hover {
+  color: var(--text-1);
+}
+.activity-aside-x {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+.activity-aside-x:hover {
+  background: var(--hover);
+}
+
+/* Expanded details and the task chooser: anchored to the pill, never a chat window. */
+.activity-details,
+.activity-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 180;
+  width: min(400px, 92vw);
+  border-radius: var(--r-menu);
+  background: var(--mat-menu);
+  border: 1px solid var(--mat-border);
+  box-shadow: var(--mat-highlight), var(--shadow-float);
+  -webkit-backdrop-filter: var(--mat-blur);
+  backdrop-filter: var(--mat-blur);
+}
+.activity-details {
+  max-height: min(62vh, 560px);
+  overflow: auto;
+  padding: 12px 14px 10px;
+}
+.activity-details-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.activity-details-head > div {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.activity-details section {
+  padding-top: 10px;
+}
+.activity-details h3 {
+  margin: 0 0 4px;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: var(--text-3);
+}
+.activity-now {
+  margin: 0;
+  font-size: var(--text-md);
+}
+.activity-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: var(--text-sm);
+}
+.activity-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+.activity-list li > span:first-of-type {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.activity-list .icon {
+  flex: none;
+  align-self: center;
+}
+.activity-list .is-error {
+  color: var(--danger);
+}
+.activity-list .is-ok .icon {
+  color: var(--success);
+}
+.activity-recent li {
+  justify-content: space-between;
+}
+.activity-link {
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--accent-text);
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.activity-link:hover {
+  text-decoration: underline;
+}
+.activity-menu {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+}
+.activity-menu button {
+  display: grid;
+  grid-template-columns: 16px auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 8px;
+  border: 0;
+  border-radius: var(--r-control);
+  background: none;
+  color: var(--text-1);
+  text-align: left;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.activity-menu button:hover,
+.activity-menu [aria-selected='true'] button {
+  background: var(--selected);
+}
+.activity-menu-who {
+  font-weight: var(--weight-semibold);
+  color: var(--text-2);
+}
+.activity-menu-what {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Narrow windows: the pill keeps its controls and shortens its text. */
+@media (max-width: 900px) {
+  .activity-who {
+    display: none;
+  }
+  .activity-pill {
+    min-width: 0;
+  }
+  .activity-aside > span:not(.activity-aside-x) {
+    display: none;
+  }
+}
+
+/* ---------- Overlay: never takes clicks, focus or selection ---------- */
+.ai-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  pointer-events: none;
+  user-select: none;
+  contain: strict;
+}
+.ai-highlight {
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--ai-line);
+  background: var(--ai-fill);
+  opacity: 0;
+  transition: opacity 160ms var(--ease);
+  will-change: transform, opacity;
+}
+.ai-highlight.is-on {
+  opacity: 1;
+}
+.ai-highlight.is-assertion {
+  border-style: dashed;
+  background: transparent;
+}
+.ai-highlight.is-created {
+  background: color-mix(in srgb, var(--ai-color) 12%, transparent);
+}
+.ai-highlight.is-failed {
+  border-color: color-mix(in srgb, var(--danger) 90%, transparent);
+  background: color-mix(in srgb, var(--danger) 7%, transparent);
+}
+.ai-highlight-tag {
+  position: absolute;
+  left: -1px;
+  bottom: calc(100% + 4px);
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 2px 8px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--mat-border);
+  background: var(--mat-menu);
+  color: var(--text-1);
+  font-size: var(--text-xs);
+  box-shadow: var(--shadow-card);
+}
+.ai-pointer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 22px;
+  opacity: 0;
+  transition-property: transform, opacity;
+  transition-timing-function: var(--ease), var(--ease);
+  will-change: transform, opacity;
+}
+.ai-pointer.is-on {
+  opacity: 1;
+}
+.ai-pointer svg {
+  position: absolute;
+  left: -3px;
+  top: -2px;
+  overflow: visible;
+  filter: drop-shadow(0 0 0.6px rgba(18, 20, 44, 0.85)) drop-shadow(0 2px 3px rgba(10, 12, 30, 0.28));
+}
+.ai-pointer path {
+  fill: var(--ai-pointer);
+  stroke: var(--ai-edge);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+.ai-pointer-label {
+  position: absolute;
+  left: 15px;
+  top: 17px;
+  padding: 2px 6px;
+  border-radius: var(--r-pill);
+  background: #dfe2ff;
+  border: 1px solid rgba(29, 33, 64, 0.18);
+  color: #1d2140;
+  font: 600 10px/1.2 var(--font-ui, system-ui, sans-serif);
+  box-shadow: 0 2px 4px rgba(10, 12, 30, 0.18);
+}
+
+/* Stories: the step an AI run is on. */
+.story-step.is-live {
+  background: color-mix(in srgb, var(--ai-color) 12%, transparent);
+  box-shadow: inset 2px 0 0 var(--ai-color);
+}
+.story-step.is-live-failed {
+  background: var(--danger-soft);
+  box-shadow: inset 2px 0 0 var(--danger);
+}

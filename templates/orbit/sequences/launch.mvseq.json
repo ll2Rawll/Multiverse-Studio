@@ -1,0 +1,130 @@
+{
+  "format": "multiverse-sequence",
+  "version": 1,
+  "id": "launch",
+  "name": "Orbit launch",
+  "settings": {
+    "width": 1920,
+    "height": 1080,
+    "fps": {
+      "num": 30,
+      "den": 1
+    },
+    "sampleRate": 48000,
+    "background": "#0f2433"
+  },
+  "tracks": [
+    {
+      "id": "v1",
+      "kind": "video",
+      "name": "Video 1",
+      "muted": false,
+      "hidden": false,
+      "locked": false,
+      "volume": 1,
+      "clips": []
+    },
+    {
+      "id": "t1",
+      "kind": "text",
+      "name": "Titles",
+      "muted": false,
+      "hidden": false,
+      "locked": false,
+      "volume": 1,
+      "clips": [
+        {
+          "id": "obj-ionxqainlo",
+          "start": 0,
+          "fadeIn": 0,
+          "fadeOut": 0,
+          "transitionIn": null,
+          "type": "text",
+          "duration": 720000,
+          "text": "Orbit",
+          "style": {
+            "fontSize": 96,
+            "color": "#ffffff",
+            "weight": "semibold",
+            "align": "center",
+            "x": 0.5,
+            "y": 0.46,
+            "box": false,
+            "boxColor": "#000000",
+            "panelColor": "#111014"
+          },
+          "template": "title-card",
+          "subtitle": "Plan the week. Ship the work.",
+          "object": {
+            "id": "orbit-headline",
+            "instance": "ionxqbjcdg",
+            "revision": 1,
+            "hash": "cd0f1708cc90"
+          }
+        },
+        {
+          "id": "obj-ionxqiueao",
+          "start": 5280000,
+          "fadeIn": 0,
+          "fadeOut": 0,
+          "transitionIn": null,
+          "type": "text",
+          "duration": 960000,
+          "text": "Orbit Pro — $8",
+          "style": {
+            "fontSize": 96,
+            "color": "#ffffff",
+            "weight": "semibold",
+            "align": "center",
+            "x": 0.5,
+            "y": 0.46,
+            "box": false,
+            "boxColor": "#000000",
+            "panelColor": "#111014"
+          },
+          "template": "title-card",
+          "subtitle": "per month · Unlimited tasks · Open and done filters · Works in any modern browser",
+          "object": {
+            "id": "pro-plan",
+            "instance": "ionxqj1p6q",
+            "revision": 1,
+            "hash": "1bf8e09a19ac"
+          }
+        },
+        {
+          "id": "t-f7f54079",
+          "type": "text",
+          "start": 6240000,
+          "duration": 960000,
+          "text": "Try the Orbit demo",
+          "style": {
+            "fontSize": 96,
+            "color": "#ffffff",
+            "weight": "semibold",
+            "align": "center",
+            "x": 0.5,
+            "y": 0.46,
+            "box": false,
+            "boxColor": "#000000",
+            "panelColor": "#111014"
+          },
+          "fadeIn": 0,
+          "fadeOut": 0,
+          "transitionIn": null,
+          "template": "title-card",
+          "subtitle": "A fictional product, made with Multiverse Studio"
+        }
+      ]
+    },
+    {
+      "id": "a1",
+      "kind": "audio",
+      "name": "Audio 1",
+      "muted": false,
+      "hidden": false,
+      "locked": false,
+      "volume": 1,
+      "clips": []
+    }
+  ]
+}

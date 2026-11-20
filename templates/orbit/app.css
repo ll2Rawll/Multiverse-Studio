@@ -1,0 +1,23 @@
+/* The Orbit task app. Reads the same theme tokens as the site. */
+.orbit-app { max-width: 640px; margin: 0 auto; padding: 32px 20px 64px; }
+.app-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+.app-note { margin: 0; color: var(--mv-color-muted); font-size: 0.9rem; }
+.orbit-app h1 { font-size: 2rem; margin: 16px 0 20px; }
+.new-task { display: grid; grid-template-columns: 1fr auto; gap: 8px 10px; align-items: end; }
+.new-task label { grid-column: 1 / -1; font-weight: 600; font-size: 0.95rem; }
+.new-task input { font: inherit; padding: 10px 12px; border: 1px solid var(--mv-color-line); border-radius: var(--mv-radius); background: var(--mv-color-card); color: var(--mv-color-text); }
+.new-task input:focus-visible, .orbit-app button:focus-visible, .task input:focus-visible { outline: 3px solid color-mix(in srgb, var(--mv-color-primary) 45%, transparent); outline-offset: 2px; }
+.orbit-app button { font: inherit; cursor: pointer; border-radius: var(--mv-radius); border: 1px solid var(--mv-color-line); background: var(--mv-color-card); color: var(--mv-color-text); padding: 8px 14px; }
+.new-task button { background: var(--mv-color-primary); border-color: var(--mv-color-primary); color: var(--mv-color-on-primary); font-weight: 600; padding: 10px 18px; }
+.task-error { grid-column: 1 / -1; margin: 0; min-height: 1.4em; color: #a23b2a; font-size: 0.9rem; }
+.task-bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 20px 0 8px; flex-wrap: wrap; }
+.task-count { margin: 0; font-weight: 600; }
+.filters { display: flex; gap: 6px; }
+.filters button[aria-pressed="true"] { background: var(--mv-color-surface); border-color: var(--mv-color-primary); }
+.task-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--mv-color-line); }
+.task { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 4px; border-bottom: 1px solid var(--mv-color-line); }
+.task label { display: flex; align-items: center; gap: 12px; flex: 1; cursor: pointer; }
+.task input { width: 18px; height: 18px; accent-color: var(--mv-color-primary); }
+.task.is-done span { color: var(--mv-color-muted); text-decoration: line-through; }
+.orbit-app .task-delete { border: none; background: none; color: var(--mv-color-muted); font-size: 1.3rem; line-height: 1; padding: 4px 10px; }
+.empty, .saved-note { color: var(--mv-color-muted); font-size: 0.95rem; }

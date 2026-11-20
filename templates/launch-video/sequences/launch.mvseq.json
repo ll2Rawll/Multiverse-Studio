@@ -1,0 +1,117 @@
+{
+  "format": "multiverse-sequence",
+  "version": 1,
+  "id": "launch",
+  "name": "Launch video",
+  "settings": {
+    "width": 1920,
+    "height": 1080,
+    "fps": {
+      "num": 30,
+      "den": 1
+    },
+    "sampleRate": 48000,
+    "background": "#0b1020"
+  },
+  "tracks": [
+    {
+      "id": "v1",
+      "kind": "video",
+      "name": "Video 1",
+      "muted": false,
+      "hidden": false,
+      "locked": false,
+      "volume": 1,
+      "clips": []
+    },
+    {
+      "id": "t1",
+      "kind": "text",
+      "name": "Titles",
+      "muted": false,
+      "hidden": false,
+      "locked": false,
+      "volume": 1,
+      "clips": [
+        {
+          "id": "t-765aa63b",
+          "start": 0,
+          "fadeIn": 0,
+          "fadeOut": 0,
+          "transitionIn": null,
+          "type": "text",
+          "duration": 960000,
+          "text": "Your product, in 30 seconds",
+          "style": {
+            "fontSize": 96,
+            "color": "#ffffff",
+            "weight": "semibold",
+            "align": "center",
+            "x": 0.5,
+            "y": 0.46,
+            "box": false,
+            "boxColor": "#000000",
+            "panelColor": "#111014"
+          },
+          "template": "title-card",
+          "subtitle": "Replace these titles with your own"
+        },
+        {
+          "id": "t-a6e8e3d2",
+          "start": 960000,
+          "fadeIn": 0,
+          "fadeOut": 0,
+          "transitionIn": null,
+          "type": "text",
+          "duration": 1200000,
+          "text": "Drop a screen recording or clip on Video 1",
+          "style": {
+            "fontSize": 54,
+            "color": "#ffffff",
+            "weight": "semibold",
+            "align": "left",
+            "x": 0.08,
+            "y": 0.79,
+            "box": false,
+            "boxColor": "#000000",
+            "panelColor": "#111014"
+          },
+          "template": "lower-third"
+        },
+        {
+          "id": "t-dd9e24a5",
+          "type": "text",
+          "start": 6240000,
+          "duration": 960000,
+          "text": "Try it today",
+          "style": {
+            "fontSize": 84,
+            "color": "#ffffff",
+            "weight": "semibold",
+            "align": "center",
+            "x": 0.5,
+            "y": 0.44,
+            "box": false,
+            "boxColor": "#000000",
+            "panelColor": "#111014"
+          },
+          "fadeIn": 0,
+          "fadeOut": 0,
+          "transitionIn": null,
+          "template": "end-card",
+          "subtitle": "example.com"
+        }
+      ]
+    },
+    {
+      "id": "a1",
+      "kind": "audio",
+      "name": "Audio 1",
+      "muted": false,
+      "hidden": false,
+      "locked": false,
+      "volume": 1,
+      "clips": []
+    }
+  ]
+}

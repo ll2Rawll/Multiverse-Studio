@@ -1,0 +1,966 @@
+{
+ "demo": true,
+ "note": "Demo data generated for this template. Replace /demo-data.json with your real API.",
+ "orders": [
+  {
+   "id": "ORD-1043",
+   "date": "2026-03-01",
+   "customer": "Elm Street Books",
+   "region": "West",
+   "status": "pending",
+   "total": 122.19
+  },
+  {
+   "id": "ORD-1061",
+   "date": "2026-03-01",
+   "customer": "Cobalt Labs",
+   "region": "North",
+   "status": "refunded",
+   "total": 329.97
+  },
+  {
+   "id": "ORD-1091",
+   "date": "2026-03-01",
+   "customer": "Iris Florals",
+   "region": "South",
+   "status": "paid",
+   "total": 224.72
+  },
+  {
+   "id": "ORD-1112",
+   "date": "2026-03-01",
+   "customer": "Birch & Daughters",
+   "region": "North",
+   "status": "paid",
+   "total": 283.04
+  },
+  {
+   "id": "ORD-1065",
+   "date": "2026-03-02",
+   "customer": "Iris Florals",
+   "region": "West",
+   "status": "paid",
+   "total": 243.82
+  },
+  {
+   "id": "ORD-1080",
+   "date": "2026-03-02",
+   "customer": "Cobalt Labs",
+   "region": "East",
+   "status": "pending",
+   "total": 321.82
+  },
+  {
+   "id": "ORD-1083",
+   "date": "2026-03-02",
+   "customer": "Cobalt Labs",
+   "region": "West",
+   "status": "paid",
+   "total": 377.9
+  },
+  {
+   "id": "ORD-1087",
+   "date": "2026-03-02",
+   "customer": "Dune Coffee",
+   "region": "North",
+   "status": "paid",
+   "total": 407.62
+  },
+  {
+   "id": "ORD-1095",
+   "date": "2026-03-02",
+   "customer": "Acme Co",
+   "region": "North",
+   "status": "refunded",
+   "total": 269.43
+  },
+  {
+   "id": "ORD-1118",
+   "date": "2026-03-02",
+   "customer": "Birch & Daughters",
+   "region": "South",
+   "status": "paid",
+   "total": 289.63
+  },
+  {
+   "id": "ORD-1004",
+   "date": "2026-03-03",
+   "customer": "Acme Co",
+   "region": "North",
+   "status": "paid",
+   "total": 398.87
+  },
+  {
+   "id": "ORD-1009",
+   "date": "2026-03-03",
+   "customer": "Juniper Health",
+   "region": "South",
+   "status": "paid",
+   "total": 217.56
+  },
+  {
+   "id": "ORD-1017",
+   "date": "2026-03-03",
+   "customer": "Harbor Cycles",
+   "region": "North",
+   "status": "pending",
+   "total": 42.39
+  },
+  {
+   "id": "ORD-1036",
+   "date": "2026-03-03",
+   "customer": "Fable Studio",
+   "region": "East",
+   "status": "paid",
+   "total": 210.41
+  },
+  {
+   "id": "ORD-1113",
+   "date": "2026-03-03",
+   "customer": "Harbor Cycles",
+   "region": "East",
+   "status": "paid",
+   "total": 343.31
+  },
+  {
+   "id": "ORD-1032",
+   "date": "2026-03-04",
+   "customer": "Cobalt Labs",
+   "region": "North",
+   "status": "paid",
+   "total": 399.48
+  },
+  {
+   "id": "ORD-1035",
+   "date": "2026-03-04",
+   "customer": "Harbor Cycles",
+   "region": "West",
+   "status": "refunded",
+   "total": 212.5
+  },
+  {
+   "id": "ORD-1064",
+   "date": "2026-03-04",
+   "customer": "Acme Co",
+   "region": "South",
+   "status": "pending",
+   "total": 94.91
+  },
+  {
+   "id": "ORD-1074",
+   "date": "2026-03-04",
+   "customer": "Harbor Cycles",
+   "region": "South",
+   "status": "paid",
+   "total": 415.93
+  },
+  {
+   "id": "ORD-1062",
+   "date": "2026-03-05",
+   "customer": "Harbor Cycles",
+   "region": "North",
+   "status": "paid",
+   "total": 241.7
+  },
+  {
+   "id": "ORD-1070",
+   "date": "2026-03-05",
+   "customer": "Granite Works",
+   "region": "West",
+   "status": "paid",
+   "total": 145.02
+  },
+  {
+   "id": "ORD-1110",
+   "date": "2026-03-05",
+   "customer": "Birch & Daughters",
+   "region": "West",
+   "status": "paid",
+   "total": 354.0
+  },
+  {
+   "id": "ORD-1117",
+   "date": "2026-03-05",
+   "customer": "Elm Street Books",
+   "region": "South",
+   "status": "paid",
+   "total": 23.01
+  },
+  {
+   "id": "ORD-1025",
+   "date": "2026-03-06",
+   "customer": "Dune Coffee",
+   "region": "North",
+   "status": "paid",
+   "total": 212.96
+  },
+  {
+   "id": "ORD-1052",
+   "date": "2026-03-06",
+   "customer": "Acme Co",
+   "region": "South",
+   "status": "pending",
+   "total": 255.51
+  },
+  {
+   "id": "ORD-1090",
+   "date": "2026-03-06",
+   "customer": "Acme Co",
+   "region": "East",
+   "status": "paid",
+   "total": 32.85
+  },
+  {
+   "id": "ORD-1101",
+   "date": "2026-03-06",
+   "customer": "Granite Works",
+   "region": "North",
+   "status": "paid",
+   "total": 208.81
+  },
+  {
+   "id": "ORD-1003",
+   "date": "2026-03-07",
+   "customer": "Granite Works",
+   "region": "West",
+   "status": "paid",
+   "total": 46.08
+  },
+  {
+   "id": "ORD-1031",
+   "date": "2026-03-07",
+   "customer": "Birch & Daughters",
+   "region": "East",
+   "status": "paid",
+   "total": 259.49
+  },
+  {
+   "id": "ORD-1076",
+   "date": "2026-03-07",
+   "customer": "Birch & Daughters",
+   "region": "East",
+   "status": "paid",
+   "total": 25.83
+  },
+  {
+   "id": "ORD-1006",
+   "date": "2026-03-08",
+   "customer": "Cobalt Labs",
+   "region": "East",
+   "status": "paid",
+   "total": 186.49
+  },
+  {
+   "id": "ORD-1012",
+   "date": "2026-03-08",
+   "customer": "Elm Street Books",
+   "region": "West",
+   "status": "paid",
+   "total": 369.81
+  },
+  {
+   "id": "ORD-1046",
+   "date": "2026-03-08",
+   "customer": "Fable Studio",
+   "region": "South",
+   "status": "paid",
+   "total": 212.03
+  },
+  {
+   "id": "ORD-1092",
+   "date": "2026-03-08",
+   "customer": "Birch & Daughters",
+   "region": "West",
+   "status": "pending",
+   "total": 281.92
+  },
+  {
+   "id": "ORD-1094",
+   "date": "2026-03-08",
+   "customer": "Cobalt Labs",
+   "region": "West",
+   "status": "paid",
+   "total": 415.75
+  },
+  {
+   "id": "ORD-1023",
+   "date": "2026-03-09",
+   "customer": "Granite Works",
+   "region": "East",
+   "status": "pending",
+   "total": 301.97
+  },
+  {
+   "id": "ORD-1034",
+   "date": "2026-03-09",
+   "customer": "Juniper Health",
+   "region": "East",
+   "status": "pending",
+   "total": 208.61
+  },
+  {
+   "id": "ORD-1084",
+   "date": "2026-03-09",
+   "customer": "Birch & Daughters",
+   "region": "East",
+   "status": "pending",
+   "total": 51.66
+  },
+  {
+   "id": "ORD-1088",
+   "date": "2026-03-09",
+   "customer": "Dune Coffee",
+   "region": "East",
+   "status": "paid",
+   "total": 270.73
+  },
+  {
+   "id": "ORD-1039",
+   "date": "2026-03-10",
+   "customer": "Birch & Daughters",
+   "region": "East",
+   "status": "pending",
+   "total": 226.4
+  },
+  {
+   "id": "ORD-1057",
+   "date": "2026-03-10",
+   "customer": "Juniper Health",
+   "region": "East",
+   "status": "paid",
+   "total": 122.26
+  },
+  {
+   "id": "ORD-1104",
+   "date": "2026-03-10",
+   "customer": "Dune Coffee",
+   "region": "North",
+   "status": "paid",
+   "total": 253.4
+  },
+  {
+   "id": "ORD-1119",
+   "date": "2026-03-10",
+   "customer": "Elm Street Books",
+   "region": "West",
+   "status": "paid",
+   "total": 205.29
+  },
+  {
+   "id": "ORD-1001",
+   "date": "2026-03-11",
+   "customer": "Granite Works",
+   "region": "North",
+   "status": "pending",
+   "total": 47.12
+  },
+  {
+   "id": "ORD-1063",
+   "date": "2026-03-11",
+   "customer": "Iris Florals",
+   "region": "West",
+   "status": "paid",
+   "total": 333.28
+  },
+  {
+   "id": "ORD-1086",
+   "date": "2026-03-11",
+   "customer": "Granite Works",
+   "region": "East",
+   "status": "pending",
+   "total": 267.92
+  },
+  {
+   "id": "ORD-1016",
+   "date": "2026-03-12",
+   "customer": "Juniper Health",
+   "region": "West",
+   "status": "paid",
+   "total": 45.64
+  },
+  {
+   "id": "ORD-1020",
+   "date": "2026-03-12",
+   "customer": "Birch & Daughters",
+   "region": "West",
+   "status": "paid",
+   "total": 41.7
+  },
+  {
+   "id": "ORD-1024",
+   "date": "2026-03-12",
+   "customer": "Granite Works",
+   "region": "South",
+   "status": "paid",
+   "total": 78.67
+  },
+  {
+   "id": "ORD-1048",
+   "date": "2026-03-12",
+   "customer": "Birch & Daughters",
+   "region": "North",
+   "status": "paid",
+   "total": 383.73
+  },
+  {
+   "id": "ORD-1054",
+   "date": "2026-03-12",
+   "customer": "Iris Florals",
+   "region": "South",
+   "status": "paid",
+   "total": 26.6
+  },
+  {
+   "id": "ORD-1019",
+   "date": "2026-03-13",
+   "customer": "Fable Studio",
+   "region": "North",
+   "status": "pending",
+   "total": 396.14
+  },
+  {
+   "id": "ORD-1030",
+   "date": "2026-03-13",
+   "customer": "Granite Works",
+   "region": "North",
+   "status": "paid",
+   "total": 94.63
+  },
+  {
+   "id": "ORD-1014",
+   "date": "2026-03-14",
+   "customer": "Fable Studio",
+   "region": "South",
+   "status": "paid",
+   "total": 393.17
+  },
+  {
+   "id": "ORD-1015",
+   "date": "2026-03-14",
+   "customer": "Birch & Daughters",
+   "region": "East",
+   "status": "paid",
+   "total": 154.73
+  },
+  {
+   "id": "ORD-1050",
+   "date": "2026-03-14",
+   "customer": "Fable Studio",
+   "region": "North",
+   "status": "paid",
+   "total": 339.93
+  },
+  {
+   "id": "ORD-1058",
+   "date": "2026-03-14",
+   "customer": "Acme Co",
+   "region": "East",
+   "status": "refunded",
+   "total": 378.88
+  },
+  {
+   "id": "ORD-1011",
+   "date": "2026-03-15",
+   "customer": "Dune Coffee",
+   "region": "South",
+   "status": "paid",
+   "total": 299.0
+  },
+  {
+   "id": "ORD-1053",
+   "date": "2026-03-15",
+   "customer": "Cobalt Labs",
+   "region": "West",
+   "status": "refunded",
+   "total": 282.22
+  },
+  {
+   "id": "ORD-1099",
+   "date": "2026-03-15",
+   "customer": "Fable Studio",
+   "region": "East",
+   "status": "paid",
+   "total": 408.99
+  },
+  {
+   "id": "ORD-1115",
+   "date": "2026-03-15",
+   "customer": "Granite Works",
+   "region": "North",
+   "status": "paid",
+   "total": 210.56
+  },
+  {
+   "id": "ORD-1038",
+   "date": "2026-03-17",
+   "customer": "Iris Florals",
+   "region": "North",
+   "status": "paid",
+   "total": 322.77
+  },
+  {
+   "id": "ORD-1067",
+   "date": "2026-03-17",
+   "customer": "Dune Coffee",
+   "region": "East",
+   "status": "paid",
+   "total": 199.84
+  },
+  {
+   "id": "ORD-1089",
+   "date": "2026-03-17",
+   "customer": "Elm Street Books",
+   "region": "West",
+   "status": "paid",
+   "total": 219.04
+  },
+  {
+   "id": "ORD-1102",
+   "date": "2026-03-17",
+   "customer": "Dune Coffee",
+   "region": "North",
+   "status": "paid",
+   "total": 54.52
+  },
+  {
+   "id": "ORD-1105",
+   "date": "2026-03-17",
+   "customer": "Cobalt Labs",
+   "region": "West",
+   "status": "refunded",
+   "total": 325.25
+  },
+  {
+   "id": "ORD-1002",
+   "date": "2026-03-18",
+   "customer": "Juniper Health",
+   "region": "North",
+   "status": "paid",
+   "total": 383.7
+  },
+  {
+   "id": "ORD-1007",
+   "date": "2026-03-18",
+   "customer": "Elm Street Books",
+   "region": "South",
+   "status": "paid",
+   "total": 59.43
+  },
+  {
+   "id": "ORD-1010",
+   "date": "2026-03-18",
+   "customer": "Fable Studio",
+   "region": "West",
+   "status": "paid",
+   "total": 253.4
+  },
+  {
+   "id": "ORD-1027",
+   "date": "2026-03-18",
+   "customer": "Juniper Health",
+   "region": "East",
+   "status": "paid",
+   "total": 401.15
+  },
+  {
+   "id": "ORD-1068",
+   "date": "2026-03-18",
+   "customer": "Iris Florals",
+   "region": "South",
+   "status": "refunded",
+   "total": 299.09
+  },
+  {
+   "id": "ORD-1077",
+   "date": "2026-03-18",
+   "customer": "Acme Co",
+   "region": "West",
+   "status": "paid",
+   "total": 151.26
+  },
+  {
+   "id": "ORD-1093",
+   "date": "2026-03-18",
+   "customer": "Granite Works",
+   "region": "East",
+   "status": "refunded",
+   "total": 294.47
+  },
+  {
+   "id": "ORD-1100",
+   "date": "2026-03-18",
+   "customer": "Acme Co",
+   "region": "East",
+   "status": "paid",
+   "total": 105.58
+  },
+  {
+   "id": "ORD-1111",
+   "date": "2026-03-18",
+   "customer": "Acme Co",
+   "region": "South",
+   "status": "paid",
+   "total": 214.7
+  },
+  {
+   "id": "ORD-1008",
+   "date": "2026-03-19",
+   "customer": "Fable Studio",
+   "region": "North",
+   "status": "paid",
+   "total": 238.19
+  },
+  {
+   "id": "ORD-1026",
+   "date": "2026-03-19",
+   "customer": "Elm Street Books",
+   "region": "North",
+   "status": "paid",
+   "total": 76.56
+  },
+  {
+   "id": "ORD-1109",
+   "date": "2026-03-19",
+   "customer": "Dune Coffee",
+   "region": "North",
+   "status": "paid",
+   "total": 30.53
+  },
+  {
+   "id": "ORD-1033",
+   "date": "2026-03-20",
+   "customer": "Dune Coffee",
+   "region": "West",
+   "status": "paid",
+   "total": 77.72
+  },
+  {
+   "id": "ORD-1041",
+   "date": "2026-03-20",
+   "customer": "Dune Coffee",
+   "region": "South",
+   "status": "refunded",
+   "total": 346.97
+  },
+  {
+   "id": "ORD-1078",
+   "date": "2026-03-20",
+   "customer": "Birch & Daughters",
+   "region": "North",
+   "status": "paid",
+   "total": 414.0
+  },
+  {
+   "id": "ORD-1005",
+   "date": "2026-03-21",
+   "customer": "Acme Co",
+   "region": "West",
+   "status": "paid",
+   "total": 37.93
+  },
+  {
+   "id": "ORD-1107",
+   "date": "2026-03-21",
+   "customer": "Iris Florals",
+   "region": "West",
+   "status": "paid",
+   "total": 313.01
+  },
+  {
+   "id": "ORD-1059",
+   "date": "2026-03-22",
+   "customer": "Iris Florals",
+   "region": "West",
+   "status": "paid",
+   "total": 350.51
+  },
+  {
+   "id": "ORD-1071",
+   "date": "2026-03-22",
+   "customer": "Birch & Daughters",
+   "region": "South",
+   "status": "paid",
+   "total": 287.13
+  },
+  {
+   "id": "ORD-1116",
+   "date": "2026-03-22",
+   "customer": "Acme Co",
+   "region": "South",
+   "status": "paid",
+   "total": 49.14
+  },
+  {
+   "id": "ORD-1018",
+   "date": "2026-03-23",
+   "customer": "Juniper Health",
+   "region": "West",
+   "status": "paid",
+   "total": 132.41
+  },
+  {
+   "id": "ORD-1028",
+   "date": "2026-03-23",
+   "customer": "Juniper Health",
+   "region": "North",
+   "status": "refunded",
+   "total": 201.57
+  },
+  {
+   "id": "ORD-1037",
+   "date": "2026-03-23",
+   "customer": "Acme Co",
+   "region": "South",
+   "status": "paid",
+   "total": 400.3
+  },
+  {
+   "id": "ORD-1044",
+   "date": "2026-03-23",
+   "customer": "Fable Studio",
+   "region": "West",
+   "status": "paid",
+   "total": 343.04
+  },
+  {
+   "id": "ORD-1098",
+   "date": "2026-03-23",
+   "customer": "Harbor Cycles",
+   "region": "South",
+   "status": "paid",
+   "total": 81.33
+  },
+  {
+   "id": "ORD-1013",
+   "date": "2026-03-24",
+   "customer": "Juniper Health",
+   "region": "North",
+   "status": "paid",
+   "total": 65.46
+  },
+  {
+   "id": "ORD-1042",
+   "date": "2026-03-24",
+   "customer": "Dune Coffee",
+   "region": "West",
+   "status": "refunded",
+   "total": 160.94
+  },
+  {
+   "id": "ORD-1045",
+   "date": "2026-03-24",
+   "customer": "Fable Studio",
+   "region": "North",
+   "status": "pending",
+   "total": 106.63
+  },
+  {
+   "id": "ORD-1051",
+   "date": "2026-03-24",
+   "customer": "Granite Works",
+   "region": "North",
+   "status": "paid",
+   "total": 309.37
+  },
+  {
+   "id": "ORD-1106",
+   "date": "2026-03-24",
+   "customer": "Cobalt Labs",
+   "region": "East",
+   "status": "pending",
+   "total": 309.11
+  },
+  {
+   "id": "ORD-1021",
+   "date": "2026-03-25",
+   "customer": "Dune Coffee",
+   "region": "West",
+   "status": "paid",
+   "total": 175.16
+  },
+  {
+   "id": "ORD-1066",
+   "date": "2026-03-25",
+   "customer": "Birch & Daughters",
+   "region": "West",
+   "status": "pending",
+   "total": 148.9
+  },
+  {
+   "id": "ORD-1120",
+   "date": "2026-03-25",
+   "customer": "Iris Florals",
+   "region": "South",
+   "status": "paid",
+   "total": 143.29
+  },
+  {
+   "id": "ORD-1049",
+   "date": "2026-03-26",
+   "customer": "Dune Coffee",
+   "region": "West",
+   "status": "paid",
+   "total": 375.38
+  },
+  {
+   "id": "ORD-1055",
+   "date": "2026-03-26",
+   "customer": "Birch & Daughters",
+   "region": "South",
+   "status": "pending",
+   "total": 192.39
+  },
+  {
+   "id": "ORD-1072",
+   "date": "2026-03-26",
+   "customer": "Cobalt Labs",
+   "region": "East",
+   "status": "paid",
+   "total": 75.48
+  },
+  {
+   "id": "ORD-1079",
+   "date": "2026-03-26",
+   "customer": "Birch & Daughters",
+   "region": "North",
+   "status": "paid",
+   "total": 124.76
+  },
+  {
+   "id": "ORD-1108",
+   "date": "2026-03-26",
+   "customer": "Iris Florals",
+   "region": "North",
+   "status": "paid",
+   "total": 350.22
+  },
+  {
+   "id": "ORD-1075",
+   "date": "2026-03-27",
+   "customer": "Granite Works",
+   "region": "West",
+   "status": "paid",
+   "total": 154.32
+  },
+  {
+   "id": "ORD-1081",
+   "date": "2026-03-27",
+   "customer": "Elm Street Books",
+   "region": "West",
+   "status": "paid",
+   "total": 78.05
+  },
+  {
+   "id": "ORD-1097",
+   "date": "2026-03-27",
+   "customer": "Iris Florals",
+   "region": "East",
+   "status": "paid",
+   "total": 258.71
+  },
+  {
+   "id": "ORD-1103",
+   "date": "2026-03-27",
+   "customer": "Granite Works",
+   "region": "North",
+   "status": "paid",
+   "total": 176.38
+  },
+  {
+   "id": "ORD-1022",
+   "date": "2026-03-28",
+   "customer": "Cobalt Labs",
+   "region": "West",
+   "status": "paid",
+   "total": 179.46
+  },
+  {
+   "id": "ORD-1029",
+   "date": "2026-03-28",
+   "customer": "Iris Florals",
+   "region": "West",
+   "status": "paid",
+   "total": 178.02
+  },
+  {
+   "id": "ORD-1056",
+   "date": "2026-03-28",
+   "customer": "Dune Coffee",
+   "region": "North",
+   "status": "paid",
+   "total": 119.24
+  },
+  {
+   "id": "ORD-1085",
+   "date": "2026-03-28",
+   "customer": "Elm Street Books",
+   "region": "North",
+   "status": "paid",
+   "total": 200.42
+  },
+  {
+   "id": "ORD-1114",
+   "date": "2026-03-28",
+   "customer": "Dune Coffee",
+   "region": "South",
+   "status": "paid",
+   "total": 315.41
+  },
+  {
+   "id": "ORD-1047",
+   "date": "2026-03-29",
+   "customer": "Acme Co",
+   "region": "West",
+   "status": "paid",
+   "total": 383.5
+  },
+  {
+   "id": "ORD-1060",
+   "date": "2026-03-29",
+   "customer": "Iris Florals",
+   "region": "South",
+   "status": "paid",
+   "total": 228.45
+  },
+  {
+   "id": "ORD-1069",
+   "date": "2026-03-29",
+   "customer": "Elm Street Books",
+   "region": "South",
+   "status": "refunded",
+   "total": 355.68
+  },
+  {
+   "id": "ORD-1073",
+   "date": "2026-03-29",
+   "customer": "Harbor Cycles",
+   "region": "South",
+   "status": "paid",
+   "total": 318.17
+  },
+  {
+   "id": "ORD-1096",
+   "date": "2026-03-29",
+   "customer": "Cobalt Labs",
+   "region": "North",
+   "status": "paid",
+   "total": 51.96
+  },
+  {
+   "id": "ORD-1040",
+   "date": "2026-03-30",
+   "customer": "Dune Coffee",
+   "region": "East",
+   "status": "paid",
+   "total": 273.85
+  },
+  {
+   "id": "ORD-1082",
+   "date": "2026-03-30",
+   "customer": "Harbor Cycles",
+   "region": "East",
+   "status": "paid",
+   "total": 53.96
+  }
+ ]
+}

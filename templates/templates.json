@@ -1,0 +1,9 @@
+[
+  {"id": "landing", "name": "Landing page", "kind": "website", "stack": "HTML and CSS", "needsInstall": false, "description": "A product page with a hero, features, pricing, a testimonial and a call to action."},
+  {"id": "portfolio", "name": "Portfolio", "kind": "website", "stack": "HTML and CSS", "needsInstall": false, "description": "A personal portfolio with selected work, an about section and contact details."},
+  {"id": "small-business", "name": "Small business", "kind": "website", "stack": "HTML and CSS", "needsInstall": false, "description": "A two-page site for a local business: services, opening hours, questions and contact."},
+  {"id": "dashboard", "name": "Dashboard", "kind": "app", "stack": "React, TypeScript and Vite", "needsInstall": true, "description": "A metrics dashboard with charts, a filterable table and loading, empty and error states."},
+  {"id": "sqlite-app", "name": "Database app", "kind": "app", "stack": "React and Vite, a Node.js API and SQLite", "needsInstall": true, "description": "A reading list with a real backend: API routes, input validation, SQL migrations, labelled demo data and SQLite storage."},
+  {"id": "orbit", "name": "Orbit demo app", "kind": "website", "stack": "HTML, CSS and JavaScript; tests with node:test", "needsInstall": false, "description": "A fictional task app with its marketing site, tests, a pricing card and headline shared with a 30-second launch video."},
+  {"id": "launch-video", "name": "Launch video", "kind": "video", "stack": "Video sequence with titles", "needsInstall": false, "description": "A 30-second 1920×1080 sequence with a title card, lower third and end card, ready for your footage."}
+]
