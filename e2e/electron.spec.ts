@@ -20,6 +20,8 @@ async function invoke<T>(page: Page, channel: string, input: unknown): Promise<T
   return r.value as T;
 }
 
+test.describe.configure({ mode: 'serial' });
+
 let app: ElectronApplication;
 let page: Page;
 let userData: string;
@@ -34,7 +36,7 @@ test.afterAll(async () => {
   await app?.close();
 });
 
-test('sample → shared change → conflict → combine → export', async () => {
+test('sample → shared change → conflict → export', async () => {
   await page.getByRole('button', { name: /Create manually/ }).click();
   await page.getByRole('button', { name: 'create the sample project' }).click();
   await expect(page.locator('.line-item', { hasText: 'Bold' })).toBeVisible();
@@ -52,6 +54,7 @@ test('sample → shared change → conflict → combine → export', async () =>
 
   // A shared change through the real IPC path, then the UI's Save button.
   const project = await invoke<{ id: string }>(page, 'projects.view', { projectId: (await invoke<{ id: string }[]>(page, 'projects.recent', {}))[0]!.id });
+  await page.locator('.line-item.is-shared .line-main').click();
   const shared = await invoke<{ text: string }>(page, 'files.read', { projectId: project.id, ref: { kind: 'line', lineId: 'shared' }, path: 'index.html' });
   await invoke(page, 'files.write', { projectId: project.id, lineId: 'shared', path: 'index.html', text: shared.text.split('Kiln').join('Kilnworks') });
   await page.getByRole('button', { name: /Save shared change/ }).first().click();
@@ -90,6 +93,6 @@ test('the project is still there after a restart', async () => {
   page = await app.firstWindow();
   await page.locator('.recent-open').first().click();
   await expect(page.locator('.line-item', { hasText: 'Editorial' })).toBeVisible();
-  await page.keyboard.press('Control+4');
-  await expect(page.locator('.timeline-entry', { hasText: 'Conflicts resolved' })).toBeVisible();
+  await page.getByRole('button', { name: 'History', exact: true }).click();
+  await expect(page.locator('.timeline-entry', { hasText: 'Conflicts resolved' }).first()).toBeVisible();
 });

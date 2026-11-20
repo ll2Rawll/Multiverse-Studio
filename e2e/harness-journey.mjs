@@ -7,20 +7,12 @@
 // navigation, reduced motion and reduced transparency.
 import { execFileSync, spawn } from 'node:child_process';
 import { mkdtemp, mkdir, cp, readFile, readdir, writeFile } from 'node:fs/promises';
-import { createRequire } from 'node:module';
+import { chromium } from 'playwright';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import assert from 'node:assert/strict';
 import { audit } from './a11y.mjs';
 import os from 'node:os';
 import path from 'node:path';
-
-const require = createRequire(import.meta.url);
-let chromium;
-try {
-  ({ chromium } = require('playwright'));
-} catch {
-  ({ chromium } = createRequire('/opt/npm-tools/node_modules/')('playwright'));
-}
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const PORT = 5299;

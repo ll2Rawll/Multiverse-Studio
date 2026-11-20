@@ -16,6 +16,10 @@ extraResources:
     to: sample
   - from: templates
     to: templates
+  - from: resources/connector
+    to: resources/connector
+  - from: resources/icons/icon.png
+    to: resources/icons/icon.png
   # Fonts for text drawn into exported videos (OFL).
   - from: resources/fonts
     to: resources/fonts

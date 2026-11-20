@@ -29,7 +29,7 @@ export class PlaywrightProbe implements BrowserProbe {
 
   private launch(): Promise<Browser> {
     if (!this.browser) {
-      const require = createRequire(process.env.PLAYWRIGHT_REQUIRE_FROM ?? '/opt/npm-tools/node_modules/');
+      const require = createRequire(process.env.PLAYWRIGHT_REQUIRE_FROM ?? import.meta.url);
       const { chromium } = require('playwright') as { chromium: { launch(o: unknown): Promise<Browser> } };
       this.browser = chromium.launch({ args: ['--no-proxy-server'] });
     }

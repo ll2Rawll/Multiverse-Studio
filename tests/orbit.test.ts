@@ -108,7 +108,7 @@ test('the Orbit demonstration runs end to end without a provider, and reopens af
     for (const id of [pro, playful]) {
       const r = await service.call('tests.run', { projectId, lineId: id });
       assert.equal(r.passed, true, r.output);
-      assert.match(r.output, /# pass 4/);
+      assert.match(r.output, /^[#ℹ] pass 4$/m);
     }
 
     // 6. An executable story with fixture data.

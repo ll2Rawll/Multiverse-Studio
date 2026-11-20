@@ -209,7 +209,7 @@ test('fixtures fill in, unknown fixtures are refused, and dependencies are worke
 test('an exported walkthrough performs the story step by step when served with the app', async () => {
   const h = await setup();
   const { createRequire } = await import('node:module');
-  const { chromium } = createRequire('/opt/npm-tools/node_modules/')('playwright') as { chromium: { launch(o: unknown): Promise<{ newPage(): Promise<any>; close(): Promise<void> }> } };
+  const { chromium } = createRequire(import.meta.url)('playwright') as { chromium: { launch(o: unknown): Promise<{ newPage(): Promise<any>; close(): Promise<void> }> } };
   let server: http.Server | null = null;
   try {
     await h.run('stories.exportWalkthrough', { story: 'first-task' });
