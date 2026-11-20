@@ -9,7 +9,7 @@
   "author": "Multiverse Studio",
   "license": "MIT",
   "engines": {
-    "node": ">=20.19.0"
+    "node": ">=22.12.0"
   },
   "scripts": {
     "dev": "node scripts/dev.mjs",
@@ -32,7 +32,7 @@
     "acorn": "^8.14.0",
     "diff": "^8.0.2",
     "jszip": "^3.10.1",
-    "zod": "^3.25.0"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@playwright/test": "^1.52.0",
@@ -40,8 +40,8 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.4.1",
-    "electron": "^37.0.0",
-    "electron-builder": "^25.1.8",
+    "electron": "^45.4.1",
+    "electron-builder": "^26.18.0",
     "esbuild": "^0.25.0",
     "monaco-editor": "^0.52.2",
     "playwright": "^1.52.0",

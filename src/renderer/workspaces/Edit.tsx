@@ -75,6 +75,17 @@ function SearchPanel({ projectId, lineId, onOpen }: { projectId: string; lineId:
   );
 }
 
+interface DocumentDraft {
+  hash: string | null;
+  pending: string | null;
+  writing: Promise<boolean> | null;
+  file: FileContent | null;
+}
+
+// A file reopened during an outstanding write keeps its text and shares the same writer.
+// Successful writes free the entry. A failed write retains the draft for a retry.
+const unsavedDocuments = new Map<string, DocumentDraft>();
+
 /** The code editor with a live preview. Apps pass their dev-server preview in place of the static one. */
 export function Edit({ appPreview }: { appPreview?: ReactNode } = {}) {
   const project = useStudio((s) => s.project)!;
@@ -93,111 +104,109 @@ export function Edit({ appPreview }: { appPreview?: ReactNode } = {}) {
   const entry = files.data?.find((f) => f.path === path) ?? null;
   const locked = Boolean(path && line.conflictFiles.includes(path));
 
-  const [content, setContent] = useState<FileContent | null>(null);
+  // Each open document owns its optimistic hash and pending write, even after the user switches tabs.
+  const documentKey = JSON.stringify([project.id, line.id, path]);
+  const draft = useMemo<DocumentDraft>(() => unsavedDocuments.get(documentKey) ?? {
+    hash: null, pending: null, writing: null, file: null,
+  }, [documentKey]);
+  const activeDraft = useRef(draft);
+  activeDraft.current = draft;
+  const [opened, setOpened] = useState<{ draft: typeof draft; file: FileContent } | null>(null);
+  const content = opened?.draft === draft ? opened.file : draft.file;
   const [diagnostics, setDiagnostics] = useState<Diagnostic[]>([]);
   const [runtimeErrors, setRuntimeErrors] = useState<RuntimeError[]>([]);
   const [searchOpen, setSearchOpen] = useState(false);
   const [liveSplit, setLiveSplit] = useState<number | null>(null);
   const [showProblems, setShowProblems] = useState(false);
   const bodyRef = useRef<HTMLDivElement | null>(null);
-  const savedHash = useRef<string | null>(null);
-  const pending = useRef<string | null>(null);
-  const inFlight = useRef(false);
-  const fileKey = `${line.id}:${path ?? ''}`;
-  const keyRef = useRef(fileKey);
-  keyRef.current = fileKey;
-
-  // Load the file when the version or file changes, and adopt external changes when nothing is pending.
   useEffect(() => {
-    if (!path) {
-      setContent(null);
-      return;
-    }
+    if (!path) return;
     let alive = true;
-    const requestKey = fileKey;
     call('files.read', { projectId: project.id, ref: lineRef(line.id), path })
-      .then((c) => {
-        if (!alive || keyRef.current !== requestKey) return;
-        if (pending.current !== null || inFlight.current) return; // local edits win; the next save merges
-        if (savedHash.current === c.hash) return;
-        savedHash.current = c.hash;
-        setContent(c);
-        if (c.text !== null) void call('files.diagnostics', { projectId: project.id, ref: lineRef(line.id), path }).then((d) => alive && setDiagnostics(d)).catch(() => undefined);
+      .then((file) => {
+        if (!alive || activeDraft.current !== draft || draft.pending !== null || draft.writing || draft.hash === file.hash) return;
+        draft.hash = file.hash;
+        draft.file = file;
+        setOpened({ draft, file });
+        if (file.text !== null) void call('files.diagnostics', { projectId: project.id, ref: lineRef(line.id), path }).then((d) => alive && setDiagnostics(d)).catch(() => undefined);
         else setDiagnostics([]);
       })
       .catch((e) => alive && toast({ tone: 'error', title: `Could not open ${path}`, body: errorMessage(e) }));
-    return () => {
-      alive = false;
-    };
-  }, [project.id, line.id, path, version]);
+    return () => { alive = false; };
+  }, [draft, version]);
 
-  useEffect(() => {
-    savedHash.current = null;
-    pending.current = null;
-    setRuntimeErrors([]);
-  }, [fileKey]);
-  useEffect(() => setRuntimeErrors([]), [version]);
+  useEffect(() => setRuntimeErrors([]), [draft, version]);
 
-  const write = useMemo(
-    () =>
-      debounce(async (projectId: string, targetLine: string, targetPath: string) => {
-        if (inFlight.current || pending.current === null) return;
-        const text = pending.current;
-        pending.current = null;
-        inFlight.current = true;
-        set({ save: { status: 'saving', message: null, at: Date.now() } });
+  const writer = useMemo(() => {
+    async function savePending(): Promise<boolean> {
+      if (!path) return true;
+      while (draft.pending !== null) {
+        const text = draft.pending;
+        draft.pending = null;
         try {
-          const result = await call('files.write', { projectId, lineId: targetLine, path: targetPath, text, baseHash: savedHash.current ?? undefined });
-          savedHash.current = result.hash;
-          if (keyRef.current === `${targetLine}:${targetPath}`) {
+          const result = await call('files.write', { projectId: project.id, lineId: line.id, path, text, baseHash: draft.hash ?? undefined });
+          draft.hash = result.hash;
+          if (draft.file) draft.file = { ...draft.file, hash: result.hash, text: draft.pending ?? result.mergedText ?? text };
+          if (activeDraft.current === draft) {
             setDiagnostics(result.diagnostics);
-            if (result.mergedText !== null && pending.current === null) {
-              setContent((c) => (c ? { ...c, text: result.mergedText, hash: result.hash } : c));
-              toast({ tone: 'info', title: 'Merged with a change that arrived while you were typing', body: targetPath });
+            if (result.mergedText !== null && draft.pending === null && draft.file) {
+              setOpened({ draft, file: draft.file });
+              toast({ tone: 'info', title: 'Merged with a change that arrived while you were typing', body: path });
             }
           }
-          set({ save: { status: 'saved', message: null, at: Date.now() } });
         } catch (error) {
+          draft.pending ??= text;
           set({ save: { status: 'error', message: errorMessage(error), at: Date.now() } });
           if (error instanceof ApiError && error.code === 'stale-write') {
             toast({
               tone: 'warning',
               title: 'This file changed while you were editing',
-              body: `${errorMessage(error)} Reload to see the latest version (your unsaved typing will be replaced).`,
+              body: `${path}: ${errorMessage(error)} Reload to replace unsaved typing with the latest version.`,
               sticky: true,
               action: {
                 label: 'Reload latest',
                 run: () => {
-                  savedHash.current = null;
-                  pending.current = null;
-                  set((s) => ({ previewVersions: { ...s.previewVersions, [targetLine]: (s.previewVersions[targetLine] ?? 0) + 1 } }));
+                  draft.pending = null;
+                  draft.hash = null;
+                  unsavedDocuments.delete(documentKey);
+                  if (activeDraft.current === draft) set((s) => ({ previewVersions: { ...s.previewVersions, [line.id]: (s.previewVersions[line.id] ?? 0) + 1 } }));
                 },
               },
             });
-          } else {
-            pending.current = pending.current ?? text;
-            toast({ tone: 'error', title: 'Could not save', body: `${errorMessage(error)} Your text is still in the editor.` });
-          }
-        } finally {
-          inFlight.current = false;
-          if (pending.current !== null) write(projectId, targetLine, targetPath);
+          } else toast({ tone: 'error', title: 'Could not save', body: `${path}: ${errorMessage(error)}` });
+          return false;
         }
-      }, 450),
-    [],
-  );
-  useEffect(() => () => write.flush(), [fileKey]);
+      }
+      unsavedDocuments.delete(documentKey);
+      if (activeDraft.current === draft) set({ save: { status: 'saved', message: null, at: Date.now() } });
+      return true;
+    }
+    function flush(): Promise<boolean> {
+      if (draft.writing) return draft.writing;
+      if (draft.pending === null) return Promise.resolve(true);
+      draft.writing = savePending().finally(() => { draft.writing = null; });
+      return draft.writing;
+    }
+    return { flush, schedule: debounce(() => void flush(), 450) };
+  }, [draft]);
+
+  useEffect(() => () => writer.schedule.flush(), [writer]);
 
   const onChange = (text: string): void => {
     if (!path) return;
     noteUserEdit(project.id, line.id, path);
-    pending.current = text;
+    unsavedDocuments.set(documentKey, draft);
+    if (draft.file) draft.file = { ...draft.file, text };
+    draft.pending = text;
     set({ save: { status: 'saving', message: null, at: Date.now() } });
-    write(project.id, line.id, path);
+    writer.schedule();
   };
 
-  const onSave = (): void => {
-    write.flush();
-    if (isShared && get().project?.shared.hasDraft) setTimeout(() => void saveShared(), 120);
+  const onSave = async (): Promise<void> => {
+    writer.schedule.cancel();
+    const hadLocalEdit = draft.pending !== null || draft.writing !== null;
+    const saved = await writer.flush();
+    if (saved && isShared && get().project?.id === project.id && (hadLocalEdit || get().project?.shared.hasDraft)) await saveShared();
   };
 
   const resetFile = (): void => {
@@ -210,10 +219,12 @@ export function Edit({ appPreview }: { appPreview?: ReactNode } = {}) {
       destructive: true,
       onConfirm: async () => {
         try {
-          write.cancel();
-          pending.current = null;
+          writer.schedule.cancel();
+          draft.pending = null;
+          await draft.writing;
           await call('files.reset', { projectId: project.id, lineId: line.id, path, to: isShared ? 'saved' : 'shared' });
-          savedHash.current = null;
+          unsavedDocuments.delete(documentKey);
+          draft.hash = null;
           set((s) => ({ previewVersions: { ...s.previewVersions, [line.id]: (s.previewVersions[line.id] ?? 0) + 1 } }));
         } catch (error) {
           toast({ tone: 'error', title: 'Could not reset the file', body: errorMessage(error) });

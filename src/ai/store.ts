@@ -19,7 +19,7 @@ const modelRecord = z.object({
   id: z.string().min(1).max(300),
   label: z.string().max(300),
   source: z.enum(['discovered', 'manual']),
-  capabilities: z.record(z.enum(CAPABILITIES), capabilityRecord),
+  capabilities: z.partialRecord(z.enum(CAPABILITIES), capabilityRecord),
   contextTokens: z.number().nullable(),
   pricing: z.object({ inputPerMTok: z.number().nullable(), outputPerMTok: z.number().nullable(), source: z.enum(['provider', 'user']) }).nullable(),
   lifecycle: z.string().max(40).nullable(),
@@ -43,7 +43,7 @@ export const connectionSchema = z.object({
 const settingsSchema = z.object({
   version: z.literal(1),
   connections: z.array(connectionSchema).max(64),
-  routing: z.record(z.enum(JOBS), z.object({ connectionId: z.string(), modelId: z.string() })),
+  routing: z.partialRecord(z.enum(JOBS), z.object({ connectionId: z.string(), modelId: z.string() })),
   budgets: z.object({ perTaskUsd: z.number().min(0).nullable(), maxToolIterations: z.number().int().min(1).max(200), maxMinutes: z.number().min(1).max(240) }),
   // Added later: files written before it existed get the defaults.
   tokenSaver: z

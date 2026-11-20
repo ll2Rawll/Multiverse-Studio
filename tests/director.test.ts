@@ -148,7 +148,7 @@ test('command arguments are described to the model as JSON Schema', () => {
   const schema = toJsonSchema(z.object({ a: z.string().min(1).max(5), b: z.number().int().min(0).optional(), c: z.enum(['x', 'y']).nullable(), d: z.array(z.boolean()).max(3) }));
   assert.deepEqual(schema, {
     type: 'object',
-    properties: { a: { type: 'string', minLength: 1, maxLength: 5 }, b: { type: 'integer', minimum: 0 }, c: { anyOf: [{ type: 'string', enum: ['x', 'y'] }, { type: 'null' }] }, d: { type: 'array', items: { type: 'boolean' }, maxItems: 3 } },
+    properties: { a: { type: 'string', minLength: 1, maxLength: 5 }, b: { type: 'integer', minimum: 0, maximum: Number.MAX_SAFE_INTEGER }, c: { anyOf: [{ type: 'string', enum: ['x', 'y'] }, { type: 'null' }] }, d: { type: 'array', items: { type: 'boolean' }, maxItems: 3 } },
     required: ['a', 'c', 'd'],
     additionalProperties: false,
   });

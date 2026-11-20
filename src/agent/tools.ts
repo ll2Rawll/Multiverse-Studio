@@ -70,7 +70,7 @@ const S = {
   look_at_page: z.object({ page: z.string().max(300).optional(), question: z.string().min(1).max(1000), width: z.number().int().min(320).max(2560).optional(), height: z.number().int().min(320).max(2000).optional() }),
   get_studio_state: z.object({ include_sequences: z.boolean().optional(), include_assets: z.boolean().optional() }),
   list_studio_commands: z.object({ domain: z.enum(['video', 'design', 'code', 'assets', 'project', 'universe', 'render', 'objects', 'stories', 'story', 'release']).optional() }),
-  run_studio_command: z.object({ name: z.string().min(3).max(80), args: z.record(z.unknown()), expected: z.record(z.string().regex(/^[0-9a-f]{64}$/).nullable()).optional(), expected_revision: z.string().max(80).optional() }),
+  run_studio_command: z.object({ name: z.string().min(3).max(80), args: z.record(z.string(), z.unknown()), expected: z.record(z.string(), z.string().regex(/^[0-9a-f]{64}$/).nullable()).optional(), expected_revision: z.string().max(80).optional() }),
 } as const;
 type ToolName = keyof typeof S;
 

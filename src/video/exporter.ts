@@ -33,7 +33,8 @@ const view = (j: JobRecord): ExportJobView => {
 
 export class ExportManager {
   private readonly jobs = new Map<string, JobRecord[]>();
-  private readonly loaded = new Set<string>();
+  private readonly loading = new Map<string, Promise<JobRecord[]>>();
+  private readonly writes = new Map<string, Promise<void>>();
   private queue: { projectId: string; jobId: string }[] = [];
   private running: { projectId: string; jobId: string; abort: AbortController } | null = null;
 
@@ -52,8 +53,18 @@ export class ExportManager {
     return path.join(this.projectDir(projectId), 'exports', 'jobs.json');
   }
 
-  private async load(projectId: string): Promise<JobRecord[]> {
-    if (this.loaded.has(projectId)) return this.jobs.get(projectId)!;
+  private load(projectId: string): Promise<JobRecord[]> {
+    const existing = this.loading.get(projectId);
+    if (existing) return existing;
+    const read = this.readJobs(projectId).catch((error) => {
+      this.loading.delete(projectId);
+      throw error;
+    });
+    this.loading.set(projectId, read);
+    return read;
+  }
+
+  private async readJobs(projectId: string): Promise<JobRecord[]> {
     let list: JobRecord[] = [];
     try {
       list = JSON.parse(await fs.readFile(this.file(projectId), 'utf8')) as JobRecord[];
@@ -71,15 +82,21 @@ export class ExportManager {
       }
     }
     this.jobs.set(projectId, list);
-    this.loaded.add(projectId);
     if (changed) await this.persist(projectId);
     return list;
   }
 
   private async persist(projectId: string): Promise<void> {
     const list = this.jobs.get(projectId) ?? [];
-    await fs.mkdir(path.dirname(this.file(projectId)), { recursive: true });
-    await writeFileAtomic(this.file(projectId), JSON.stringify(list.slice(-50), null, 1));
+    const snapshot = JSON.stringify(list.slice(-50), null, 1);
+    const previous = this.writes.get(projectId) ?? Promise.resolve();
+    const write = previous.catch(() => undefined).then(() => writeFileAtomic(this.file(projectId), snapshot));
+    this.writes.set(projectId, write);
+    try {
+      await write;
+    } finally {
+      if (this.writes.get(projectId) === write) this.writes.delete(projectId);
+    }
   }
 
   private async update(projectId: string, job: JobRecord, patch: Partial<JobRecord>): Promise<void> {
@@ -89,7 +106,9 @@ export class ExportManager {
   }
 
   async list(projectId: string): Promise<ExportJobView[]> {
-    return (await this.load(projectId)).map(view).reverse();
+    const jobs = await this.load(projectId);
+    await this.writes.get(projectId);
+    return jobs.map(view).reverse();
   }
 
   async start(projectId: string, lineId: string, sequence: Sequence, settings: ExportSettings, destination: string | null, sources: { sequenceHash: string; assetShas: Record<string, string>; revision?: string | null; draft?: boolean } | null = null): Promise<ExportJobView> {

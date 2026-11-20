@@ -144,9 +144,9 @@ export async function geminiMediaBytes(ctx: AdapterContext, c: InteractionConten
   const uri = c.uri!;
   const base = new URL(ctx.config.baseUrl);
   const target = new URL(uri);
-  const sameHost = target.host === base.host;
+  const sameOrigin = target.origin === base.origin;
   const fileId = /\/files\/([^/:?]+)/.exec(target.pathname)?.[1];
-  if (sameHost && fileId) {
+  if (sameOrigin && fileId) {
     for (let i = 0; i < 120; i++) {
       const meta = (await (await providerFetch(ctx, `/files/${fileId}`)).json().catch(() => null)) as { state?: string; error?: { message?: string } } | null;
       if (!meta?.state || meta.state === 'ACTIVE') break;
@@ -154,7 +154,7 @@ export async function geminiMediaBytes(ctx: AdapterContext, c: InteractionConten
       await sleep(2000, ctx.signal);
     }
   }
-  const res = sameHost ? await providerFetch(ctx, uri, { timeoutMs: 600_000 }) : await ctx.fetch(uri, { signal: ctx.signal });
+  const res = sameOrigin ? await providerFetch(ctx, uri, { timeoutMs: 600_000 }) : await ctx.fetch(uri, { signal: ctx.signal });
   if (!res.ok) throw new ProviderError('network', `Downloading the result failed (${res.status}).`);
   const bytes = Buffer.from(await res.arrayBuffer());
   return { bytes, mime: res.headers.get('content-type')?.split(';')[0] || mime, ext: extFor(mime) };

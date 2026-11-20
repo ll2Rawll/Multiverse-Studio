@@ -1268,6 +1268,57 @@ try {
     assert.deepEqual(problems, []);
   });
 
+  await step('Editor: switching files during an autosave preserves both documents', async () => {
+    const project = (await invoke('projects.createFromTemplate', { templateId: 'landing', name: 'Save isolation' })).value;
+    const read = async (path) => (await invoke('files.read', { projectId: project.id, ref: { kind: 'line', lineId: 'shared' }, path })).value.text;
+    const html = await read('index.html');
+    const css = await read('theme.css');
+    const nextHtml = html + '\n<!-- saved in index.html -->\n';
+    const nextCss = css + '\n/* saved in theme.css */\n';
+    await page.setViewportSize({ width: 1920, height: 1080 });
+    await page.reload();
+    await page.locator('.recent-open', { hasText: 'Save isolation' }).click();
+    await page.locator('.shell').waitFor();
+    await page.keyboard.press('Control+2');
+    await page.locator('.edit-body').waitFor();
+    const showSidebar = page.getByRole('button', { name: /Show sidebar/ });
+    if (await showSidebar.isVisible()) await showSidebar.click();
+    await page.locator('.line-item.is-shared .line-main').click();
+    const editor = page.getByTestId('code-editor');
+    const choose = async (path, expected) => {
+      await page.locator('.tree-row', { hasText: path }).click();
+      await expectEventually(async () => assert.equal(await editor.inputValue({ timeout: 1000 }), expected));
+    };
+    const isHtmlWrite = (request) => {
+      if (!request.url().endsWith('/api/invoke') || request.method() !== 'POST') return false;
+      const { channel, input } = request.postDataJSON();
+      return channel === 'files.write' && input.projectId === project.id && input.path === 'index.html';
+    };
+    let release;
+    const gate = new Promise((resolve) => { release = resolve; });
+    const holdHtml = async (route) => {
+      if (isHtmlWrite(route.request())) await gate;
+      await route.continue();
+    };
+    await page.route('**/api/invoke', holdHtml);
+    try {
+      await choose('index.html', html);
+      await Promise.all([page.waitForRequest(isHtmlWrite, { timeout: 5000 }), editor.fill(nextHtml)]);
+      await choose('theme.css', css);
+      await editor.fill(nextCss);
+      await expectEventually(async () => assert.equal(await read('theme.css'), nextCss));
+      await choose('index.html', nextHtml);
+      const finalHtml = nextHtml + '<!-- edited again while the first write was pending -->\n';
+      await editor.fill(finalHtml);
+      release();
+      await expectEventually(async () => assert.equal(await read('index.html'), finalHtml));
+      assert.equal(await read('theme.css'), nextCss);
+    } finally {
+      release();
+      await page.unroute('**/api/invoke', holdHtml);
+    }
+  });
+
   assert.deepEqual(
     pageErrors.filter((m) => !/Unexpected token/.test(m)),
     [],

@@ -21,7 +21,7 @@ const ask = (approval: string): AiPolicy => ({ allow: false, approval });
 
 /** Op args are the channel input without projectId. */
 function argsOf<C extends ChannelName>(channel: C) {
-  return (channelSchemas[channel] as unknown as z.AnyZodObject).omit({ projectId: true });
+  return (channelSchemas[channel] as unknown as z.ZodObject<{ projectId: z.ZodString }>).omit({ projectId: true });
 }
 
 export function createOperations(studio: StudioService, raw: Raw): { service: OperationService; handlers: Handlers; routes: Partial<Record<ChannelName, string>> } {
