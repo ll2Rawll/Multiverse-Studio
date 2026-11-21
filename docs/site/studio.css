@@ -88,7 +88,7 @@ h1 em { display: block; color: var(--lilac); font-size: 1.24em; margin-top: 3px;
 .play-ring .icon { width: 15px; height: 15px; }
 .hero-art { position: absolute; inset: 0; z-index: -1; }
 .hero-art picture { position: absolute; inset: 0 0 0 auto; width: 87%; }
-.hero-art img { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 54% 49%; mask-image: linear-gradient(to right, transparent 0, #000 25%); }
+.hero-art img { position: absolute; width: 100%; height: 100%; object-fit: cover; object-position: 54% 15%; mask-image: linear-gradient(to right, transparent 0, #000 25%); }
 .hero-art figcaption {
   position: absolute; right: max(calc((100% - var(--site-width)) / 2 + var(--gutter)), var(--gutter)); bottom: 24px;
   display: flex; gap: 11px; align-items: center; padding: 6px 0; color: #e5dce9;
@@ -249,11 +249,10 @@ footer { color: #e7dfeb; background: #150f1c; }
   h1 em { font-size: 1.19em; }
   .hero-copy > p { max-width: 32ch; font-size: 17px; }
   .hero .actions { margin-top: 20px; }
-  .hero-art { position: relative; inset: auto; z-index: 0; height: clamp(245px, 65vw, 370px); margin-top: 5px; }
+  .hero-art { position: relative; inset: auto; z-index: 0; height: clamp(245px, 73vw, 425px); margin-top: 5px; }
   .hero-art picture { inset: 0; width: 100%; }
-  .hero-art img { object-fit: contain; object-position: 50% 55%; mask-image: linear-gradient(to bottom, transparent, black 15%); }
-  .hero-art picture::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to right, #160f1d 2%, transparent 24%, transparent 77%, #160f1d 98%); pointer-events: none; }
-  .hero-art figcaption { right: var(--gutter); bottom: 12px; font-size: 12px; }
+  .hero-art img { object-fit: cover; object-position: 50% 18%; mask-image: linear-gradient(to bottom, transparent, black 15%); }
+  .hero-art figcaption { left: var(--gutter); right: auto; bottom: 14px; font-size: 12px; }
   .hero-art figcaption strong { font-size: 13px; }
   .workspaces, .versions, .film, .source { padding-block: 58px; }
 }
@@ -289,6 +288,8 @@ footer { color: #e7dfeb; background: #150f1c; }
   .button { padding-inline: 15px; }
   .hero .actions { gap: 12px; }
   .hero .play-link { gap: 6px; }
+  .version-tabs { width: 100%; gap: 1px; }
+  .swatch { flex: 1; gap: 5px; padding-inline: 7px; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; }
