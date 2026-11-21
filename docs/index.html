@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#150f1c">
+  <title>Multiverse Studio — Video, code, and website editor</title>
+  <meta name="description" content="Cut video, write code, and design websites in one local-first desktop app by 2Raw. Explore the real editors, compare versions, and watch the 30-second trailer.">
+  <link rel="canonical" href="https://ll2rawll.github.io/Multiverse-Studio/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Multiverse Studio">
+  <meta property="og:description" content="Video, code, and websites in one local-first desktop studio by 2Raw.">
+  <meta property="og:url" content="https://ll2rawll.github.io/Multiverse-Studio/">
+  <meta property="og:image" content="https://ll2rawll.github.io/Multiverse-Studio/site/assets/multiverse-studio-cover.jpg">
+  <meta property="og:image:width" content="1520">
+  <meta property="og:image:height" content="760">
+  <meta property="og:image:alt" content="Multiverse Studio beside the polished silver Afterimage sculpture.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="site/assets/app-mark.png">
+  <link rel="preload" href="site/assets/instrument-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="site/studio.css">
+  <script src="site/studio.js" defer></script>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" class="symbols" aria-hidden="true">
+    <symbol id="icon-play" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M7 4.9c0-.8.8-1.2 1.5-.8l11.3 7.1c.6.4.6 1.2 0 1.6L8.5 19.9c-.7.4-1.5 0-1.5-.8z"/></symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12 .9a11.1 11.1 0 0 0-3.51 21.64c.55.1.76-.24.76-.54l-.02-2.06c-3.1.67-3.75-1.31-3.75-1.31-.5-1.27-1.23-1.6-1.23-1.6-1.01-.69.08-.68.08-.68 1.12.08 1.7 1.15 1.7 1.15 1 .7 2.43.5 3.2.24.11-.72.43-1.22.78-1.5-2.47-.28-5.06-1.23-5.06-5.47 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .94-.3 3.05 1.14a10.5 10.5 0 0 1 5.56 0c2.12-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.12 2.94.71.78 1.14 1.77 1.14 2.98 0 4.25-2.6 5.18-5.08 5.46.41.34.76 1.02.76 2.05l-.02 3.71c0 .3.2.64.77.53A11.1 11.1 0 0 0 12 .9Z"/></symbol>
+    <symbol id="icon-cut" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2.2"/><path d="M2.5 10h19m-14-5 3.5 5m2.5-5 3.5 5"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="m7 7-5 5 5 5m10-10 5 5-5 5m-4-13-2.4 16"/></symbol>
+    <symbol id="icon-page" viewBox="0 0 24 24"><rect x="2.5" y="3.8" width="19" height="16.4" rx="2.2"/><path d="M3 9.2h18M9 9.2V20"/></symbol>
+    <symbol id="icon-zoom" viewBox="0 0 24 24"><circle cx="10.2" cy="10.2" r="6.7"/><path d="m15.2 15.2 5.3 5.3M7 10.2h6.4M10.2 7v6.4"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24"><path d="M12 3v11m-4.5-4L12 14.5l4.5-4.5M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+    <symbol id="icon-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></symbol>
+  </svg>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <div class="wrap nav-layout">
+      <a class="wordmark" href="./"><img src="site/assets/app-mark.png" width="34" height="34" alt="">Multiverse Studio</a>
+      <nav aria-label="Main navigation">
+        <a href="#workspaces">Workspaces</a>
+        <a href="#versions">Versions</a>
+        <a href="#trailer">Trailer</a>
+      </nav>
+      <a class="github" href="https://github.com/ll2Rawll/Multiverse-Studio"><svg class="icon" aria-hidden="true"><use href="#icon-github"/></svg>GitHub</a>
+    </div>
+  </header>
+  <main id="main" tabindex="-1">
+    <section class="hero" aria-labelledby="title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow hero-kicker"><span class="edit-marks" aria-hidden="true"><i></i><i></i><i></i></span>Local-first desktop editor</div>
+          <h1 id="title">Multiverse <em>Studio</em></h1>
+          <p>Cut video, write code, and design websites in one project. Keep your files on your own machine.</p>
+          <div class="actions">
+            <a class="button primary" href="#workspaces">Explore the editors</a>
+            <a class="play-link" href="#trailer" data-play-film><span class="play-ring"><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg></span>Watch trailer</a>
+          </div>
+        </div>
+        <figure class="hero-art">
+          <picture>
+            <source media="(max-width: 700px)" srcset="site/assets/stage-portrait.webp">
+            <img src="site/assets/stage-wide.webp" alt="A polished chrome loop catches violet and warm light on a smoked-plum stage." width="1800" height="1012" fetchpriority="high">
+          </picture>
+          <figcaption><span class="keyframe" aria-hidden="true"></span><span><strong>Afterimage</strong>Motion study</span></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="workspaces light-section" id="workspaces" aria-labelledby="work-title">
+      <div class="wrap work-grid">
+        <div class="work-intro">
+          <p class="eyebrow">Workspaces</p>
+          <h2 id="work-title">Inside the <em>studio.</em></h2>
+          <p class="body-copy">Follow Afterimage from a timeline edit to a line of CSS and a finished page.</p>
+          <div class="editor-tabs" data-tabs="editors" aria-label="Choose an editor">
+            <a class="editor-tab is-active" id="tab-video" href="media/video.webp" data-panel="editor-video"><svg class="icon" aria-hidden="true"><use href="#icon-cut"/></svg><span>Video</span><i aria-hidden="true"></i></a>
+            <a class="editor-tab" id="tab-code" href="media/code.webp" data-panel="editor-code"><svg class="icon" aria-hidden="true"><use href="#icon-code"/></svg><span>Code</span><i aria-hidden="true"></i></a>
+            <a class="editor-tab" id="tab-website" href="media/website.webp" data-panel="editor-website"><svg class="icon" aria-hidden="true"><use href="#icon-page"/></svg><span>Website</span><i aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div class="editor-views">
+          <figure id="editor-video" class="editor-view">
+            <div class="screen-mat mat-video"><a href="media/video.webp" aria-label="Open the full-size video editor screenshot"><img src="media/video.webp" width="1600" height="900" alt="The real Video workspace with a silver sculpture in the preview, three clips, and a green audio waveform."><span class="zoom"><svg class="icon" aria-hidden="true"><use href="#icon-zoom"/></svg></span></a></div>
+            <figcaption><strong>Cut the film.</strong><span>Trim and split clips, layer the soundtrack, then export an MP4 or WebM.</span></figcaption>
+          </figure>
+          <figure id="editor-code" class="editor-view" hidden>
+            <div class="screen-mat mat-code"><a href="media/code.webp" aria-label="Open the full-size code editor screenshot"><img src="media/code.webp" width="1600" height="900" loading="lazy" alt="CSS open in the Monaco editor beside a live lavender preview of the Afterimage website."><span class="zoom"><svg class="icon" aria-hidden="true"><use href="#icon-zoom"/></svg></span></a></div>
+            <figcaption><strong>Open the source.</strong><span>Edit project files in Monaco and see the CSS change beside the live preview.</span></figcaption>
+          </figure>
+          <figure id="editor-website" class="editor-view" hidden>
+            <div class="screen-mat mat-website"><a href="media/website.webp" aria-label="Open the full-size website designer screenshot"><img src="media/website.webp" width="1600" height="900" loading="lazy" alt="A headline selected on the live Afterimage page with the design inspector open on the right."><span class="zoom"><svg class="icon" aria-hidden="true"><use href="#icon-zoom"/></svg></span></a></div>
+            <figcaption><strong>Shape the page.</strong><span>Select a headline on the canvas, check the phone layout, and keep the HTML and CSS.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="versions light-section" id="versions" aria-labelledby="versions-title">
+      <div class="wrap">
+        <div class="section-lead">
+          <div><p class="eyebrow">Versions</p><h2 id="versions-title">One page, <em>three directions.</em></h2></div>
+          <p class="body-copy">The same sculpture runs through three takes on Afterimage. In the studio you can edit each independently and combine the parts you want to keep.</p>
+        </div>
+        <div class="version-content">
+          <div class="version-controls">
+            <div class="version-tabs" data-tabs="versions" aria-label="Choose an Afterimage version">
+              <a id="tab-vermilion" class="swatch is-active" href="site/assets/vermilion-wide.webp" data-panel="proof-vermilion"><i aria-hidden="true"></i>Vermilion</a>
+              <a id="tab-graphite" class="swatch" href="site/assets/graphite-wide.webp" data-panel="proof-graphite"><i aria-hidden="true"></i>Graphite</a>
+              <a id="tab-paper" class="swatch" href="site/assets/paper-wide.webp" data-panel="proof-paper"><i aria-hidden="true"></i>Paper</a>
+            </div>
+            <fieldset class="format-switch"><legend class="sr">Preview format</legend><label><input type="radio" name="preview-format" value="desktop"><span>Desktop</span></label><label><input type="radio" name="preview-format" value="phone" checked><span>Phone</span></label></fieldset>
+          </div>
+          <div class="proof-stack">
+            <div class="proof-sheet vermilion" id="proof-vermilion">
+              <figure class="device desktop-proof"><a href="site/assets/vermilion-wide.webp" aria-label="Open the Vermilion desktop design"><img src="site/assets/vermilion-wide.webp" width="1260" height="731" loading="lazy" alt="The coral-red Afterimage page on desktop with the headline Light leak and a silver sculpture."></a><figcaption>Desktop</figcaption></figure>
+              <figure class="device phone-proof"><a href="site/assets/vermilion-phone.webp" aria-label="Open the Vermilion phone design"><img src="site/assets/vermilion-phone.webp" width="468" height="948" loading="lazy" alt="The Vermilion phone layout with the sculpture and Light leak headline stacked."></a><figcaption>Phone</figcaption></figure>
+            </div>
+            <div class="proof-sheet graphite" id="proof-graphite" hidden>
+              <figure class="device desktop-proof"><a href="site/assets/graphite-wide.webp" aria-label="Open the Graphite desktop design"><img src="site/assets/graphite-wide.webp" width="1260" height="731" loading="lazy" alt="The charcoal Afterimage page on desktop with the headline Refraction and a silver sculpture."></a><figcaption>Desktop</figcaption></figure>
+              <figure class="device phone-proof"><a href="site/assets/graphite-phone.webp" aria-label="Open the Graphite phone design"><img src="site/assets/graphite-phone.webp" width="468" height="948" loading="lazy" alt="The Graphite phone layout with the sculpture and Refraction headline stacked."></a><figcaption>Phone</figcaption></figure>
+            </div>
+            <div class="proof-sheet paper" id="proof-paper" hidden>
+              <figure class="device desktop-proof"><a href="site/assets/paper-wide.webp" aria-label="Open the Paper desktop design"><img src="site/assets/paper-wide.webp" width="1260" height="731" loading="lazy" alt="The warm ivory Afterimage page on desktop with the headline Phase shift and a silver sculpture."></a><figcaption>Desktop</figcaption></figure>
+              <figure class="device phone-proof"><a href="site/assets/paper-phone.webp" aria-label="Open the Paper phone design"><img src="site/assets/paper-phone.webp" width="468" height="948" loading="lazy" alt="The Paper phone layout with the sculpture and Phase shift headline stacked."></a><figcaption>Phone</figcaption></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="film" id="trailer" aria-labelledby="film-title">
+      <div class="wrap">
+        <div class="film-heading"><div><p class="eyebrow">Trailer</p><h2 id="film-title">The motion <em>cut.</em></h2></div><p class="film-runtime"><span class="play-dot" aria-hidden="true"></span>00:30 <span>/</span> 1080p</p></div>
+        <div class="film-deck">
+          <div class="film-screen">
+            <video id="motion-cut" width="1920" height="1080" controls playsinline preload="none" poster="site/assets/film-poster.webp" aria-label="Multiverse Studio, the 30-second motion cut">
+              <source src="media/multiverse-studio.mp4" type="video/mp4">
+              <track kind="descriptions" src="site/motion-description.vtt" srclang="en" label="English visual descriptions">
+              <a href="media/multiverse-studio.mp4">Open the trailer as an MP4</a>
+            </video>
+          </div>
+          <div class="chapters">
+            <h3>Jump to an edit</h3>
+            <ol>
+              <li><a href="media/multiverse-studio.mp4#t=4" data-cue="4"><time>00:04</time><span>Cut the timeline</span><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg></a></li>
+              <li><a href="media/multiverse-studio.mp4#t=7.15" data-cue="7.15"><time>00:07</time><span>Design the page</span><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg></a></li>
+              <li><a href="media/multiverse-studio.mp4#t=10.9" data-cue="10.9"><time>00:11</time><span>Edit the CSS</span><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg></a></li>
+              <li><a href="media/multiverse-studio.mp4#t=19.27" data-cue="19.27"><time>00:19</time><span>Compare versions</span><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg></a></li>
+            </ol>
+            <a class="underlink" href="media/trailer-storyboard.pdf">Illustrated storyboard <span>(PDF)</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="source light-section" id="source" aria-labelledby="source-title">
+      <div class="wrap source-grid">
+        <div><p class="eyebrow">Get the source</p><h2 id="source-title">Run it <em>locally.</em></h2><p class="body-copy">Unzip the source and open a terminal in the project folder. You’ll need Node.js 22.12 or later and npm. For video, add FFmpeg and ffprobe to your PATH.</p>
+          <div class="actions"><a class="button dark" href="https://github.com/ll2Rawll/Multiverse-Studio/archive/refs/tags/motion-cut.zip"><svg class="icon" aria-hidden="true"><use href="#icon-download"/></svg>Download source ZIP</a><a class="underlink" href="https://github.com/ll2Rawll/Multiverse-Studio/blob/main/docs/GUIDE.md">Studio guide</a></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-top"><span>Project terminal</span><button type="button" id="copy-commands" hidden><svg class="icon" aria-hidden="true"><use href="#icon-copy"/></svg><span>Copy commands</span></button></div>
+          <pre aria-label="Commands to install and launch"><code id="commands">npm ci
+npm run dev</code></pre><p id="copy-status" class="sr" role="status"></p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><a class="wordmark" href="./"><img src="site/assets/app-mark.png" width="30" height="30" alt="">Multiverse Studio</a><span>Built by <a href="https://github.com/ll2Rawll">2Raw</a></span><a href="https://github.com/ll2Rawll/Multiverse-Studio/blob/main/LICENSE">MIT license</a></div></footer>
+</body>
+</html>
